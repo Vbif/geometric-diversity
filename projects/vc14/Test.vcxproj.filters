@@ -1,66 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="projects\vc14">
+      <UniqueIdentifier>{61689cfb-69a7-4b96-9aa7-8b1ebf4e9549}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="projects">
+      <UniqueIdentifier>{917f77b8-9724-497b-a7a3-1ab68b41613a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    <Filter Include="bin\base_p">
+      <UniqueIdentifier>{9d18eb12-5994-4560-ab5e-9fb6a03de2a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{2d4710b5-8479-460f-9191-a979f2f0884d}</UniqueIdentifier>
+    <Filter Include="bin">
+      <UniqueIdentifier>{35934e8c-a7ed-4b05-af0e-a861b4cab084}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XML">
-      <UniqueIdentifier>{582ad4ec-2022-4b82-bb37-74eeac449897}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{381f1f9e-40e8-4855-88e2-dcf1dc546669}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\TestWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stdafx.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\TestAppDelegate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\TestWidget.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\TestAppDelegate.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="resource.rc">
+      <Filter>projects\vc14</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\bin\base_p\Layers.xml">
-      <Filter>XML</Filter>
+      <Filter>bin\base_p</Filter>
     </Xml>
     <Xml Include="..\..\bin\base_p\Resources.xml">
-      <Filter>XML</Filter>
+      <Filter>bin\base_p</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\bin\base_p\start.lua">
-      <Filter>Scripts</Filter>
+      <Filter>bin\base_p</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ClCompile Include="..\..\src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TestAppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TestWidget.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\TestAppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TestWidget.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
