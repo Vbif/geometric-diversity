@@ -19,19 +19,15 @@ void Enemy::StaticInit()
     }
 }
 
-Enemy::Enemy()
+Enemy::Enemy(const FPoint& position, const FPoint& speed)
+    : Transform(position, speed)
 {
-}
-
-void Enemy::Init(const FPoint& position)
-{
-    _center = position;
 }
 
 void Enemy::Draw()
 {
     MatrixLock m;
-    m.Translate(_center);
+    m.Translate(Position());
     // TODO Rotate enemy
 
     FPoint prev = _circlePoints.back();
@@ -41,6 +37,7 @@ void Enemy::Draw()
     }
 }
 
-void Enemy::Update()
+void Enemy::Update(float dt)
 {
+    UpdateTransform(dt);
 }

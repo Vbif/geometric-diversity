@@ -128,5 +128,14 @@
     <ClInclude Include="..\..\src\Constants.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\FCircle.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\FLine.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\Transform.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

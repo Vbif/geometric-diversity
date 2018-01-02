@@ -37,6 +37,7 @@ void GameWidget::Draw()
 
 void GameWidget::Update(float dt)
 {
+    _field.Update(dt);
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)
