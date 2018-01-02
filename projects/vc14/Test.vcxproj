@@ -62,7 +62,7 @@
     <ClCompile>
       <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\libs\boost;$(ProjectDir)..\..\libs\ogg\include;$(ProjectDir)..\..\libs\vorbis\include;$(ProjectDir)..\..\libs\theora\include;$(ProjectDir)..\..\libs\zlib\include;$(ProjectDir)..\..\libs\luabind\include;$(ProjectDir)..\..\libs\lua\include;$(ProjectDir)..\..\libs\jpeg\include;$(ProjectDir)..\..\libs\png\include;$(ProjectDir)..\..\libs\webp\include;$(ProjectDir)..\..\libs\freetype\include;$(ProjectDir)..\..\libs\angle\include;$(ProjectDir)..\..\libs\pugixml\include;$(ProjectDir)..\..\libs\OpenAL\include;$(ProjectDir)..\..\engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\libs\boost;$(ProjectDir)..\..\libs\ogg\include;$(ProjectDir)..\..\libs\vorbis\include;$(ProjectDir)..\..\libs\theora\include;$(ProjectDir)..\..\libs\zlib\include;$(ProjectDir)..\..\libs\luabind\include;$(ProjectDir)..\..\libs\lua\include;$(ProjectDir)..\..\libs\jpeg\include;$(ProjectDir)..\..\libs\png\include;$(ProjectDir)..\..\libs\webp\include;$(ProjectDir)..\..\libs\freetype\include;$(ProjectDir)..\..\libs\angle\include;$(ProjectDir)..\..\libs\pugixml\include;$(ProjectDir)..\..\libs\OpenAL\include;$(ProjectDir)..\..\engine\include;$(ProjectDir)..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0501;_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -93,7 +93,7 @@
       <AdditionalOptions>/Zm200 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\libs\boost;$(ProjectDir)..\..\libs\ogg\include;$(ProjectDir)..\..\libs\vorbis\include;$(ProjectDir)..\..\libs\theora\include;$(ProjectDir)..\..\libs\zlib\include;$(ProjectDir)..\..\libs\luabind\include;$(ProjectDir)..\..\libs\lua\include;$(ProjectDir)..\..\libs\jpeg\include;$(ProjectDir)..\..\libs\png\include;$(ProjectDir)..\..\libs\webp\include;$(ProjectDir)..\..\libs\freetype\include;$(ProjectDir)..\..\libs\angle\include;$(ProjectDir)..\..\libs\pugixml\include;$(ProjectDir)..\..\libs\OpenAL\include;$(ProjectDir)..\..\engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\libs\boost;$(ProjectDir)..\..\libs\ogg\include;$(ProjectDir)..\..\libs\vorbis\include;$(ProjectDir)..\..\libs\theora\include;$(ProjectDir)..\..\libs\zlib\include;$(ProjectDir)..\..\libs\luabind\include;$(ProjectDir)..\..\libs\lua\include;$(ProjectDir)..\..\libs\jpeg\include;$(ProjectDir)..\..\libs\png\include;$(ProjectDir)..\..\libs\webp\include;$(ProjectDir)..\..\libs\freetype\include;$(ProjectDir)..\..\libs\angle\include;$(ProjectDir)..\..\libs\pugixml\include;$(ProjectDir)..\..\libs\OpenAL\include;$(ProjectDir)..\..\engine\include;$(ProjectDir)..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0501;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -117,6 +117,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameScreen\GameWidget.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Misc\SquareGeneral.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Misc\SquareLife.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Misc\SquareSoldier.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Enemy.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Field.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Gun.cpp" />
     <ClCompile Include="..\..\src\Main.cpp" />
     <ClCompile Include="..\..\src\TestAppDelegate.cpp" />
     <ClCompile Include="..\..\src\TestWidget.cpp" />
@@ -126,9 +134,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Constants.h" />
+    <ClInclude Include="..\..\src\GameScreen\GameWidget.h" />
+    <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h" />
+    <ClInclude Include="..\..\src\GameScreen\Misc\SquareGeneral.h" />
+    <ClInclude Include="..\..\src\GameScreen\Misc\SquareLife.h" />
+    <ClInclude Include="..\..\src\GameScreen\Misc\SquareSoldier.h" />
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Enemy.h" />
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Field.h" />
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Gun.h" />
     <ClInclude Include="..\..\src\TestAppDelegate.h" />
     <ClInclude Include="..\..\src\TestWidget.h" />
     <ClInclude Include="..\..\src\stdafx.h" />
+    <ClInclude Include="..\..\src\Utils\MatrixUtils.h" />
+    <ClInclude Include="..\..\src\Utils\WireFrameRender.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\bin\base_p\Layers.xml">

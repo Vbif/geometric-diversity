@@ -12,3 +12,5 @@
 #ifdef __cplusplus
 #include <PlayrixEngine.h>
 #endif
+
+#include "Utils\WireFrameRender.h"
