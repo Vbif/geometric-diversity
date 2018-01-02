@@ -84,6 +84,15 @@
     <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp">
       <Filter>src\GameScreen\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Utils\FLine.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\FCircle.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\Transform.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\TestAppDelegate.h">

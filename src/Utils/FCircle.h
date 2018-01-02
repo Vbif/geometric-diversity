@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utils/FPoint.h"
+#include "Utils/FLine.h"
 
 class FCircle {
 public:
@@ -13,4 +13,6 @@ public:
         , radius(r)
     {
     }
+
+    bool Intersects(const FLine& line, FPoint* targetPoint) const;
 };

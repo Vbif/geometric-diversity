@@ -2,6 +2,7 @@
 
 #include <array>
 
+#include "Utils\FCircle.h"
 #include "Utils\Transform.h"
 
 // "Круглый" враг

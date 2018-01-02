@@ -5,11 +5,11 @@
 #include "Enemy.h"
 #include "Utils\MatrixUtils.h"
 
+static const float radius = 20;
 std::array<FPoint, Enemy::CircleQuality> Enemy::_circlePoints;
 
 void Enemy::StaticInit()
 {
-    float radius = 20;
     float twoPi = math::PI * 2;
 
     for (size_t i = 0; i < _circlePoints.size(); i++) {
@@ -20,7 +20,7 @@ void Enemy::StaticInit()
 }
 
 Enemy::Enemy(const FPoint& position, const FPoint& speed)
-    : Transform(position, speed)
+    : Transform(position, speed, radius)
 {
 }
 

@@ -13,4 +13,8 @@ public:
         , p1(end)
     {
     }
+
+    bool Intersects(const FLine& that, FPoint* targetPoint) const;
+
+    FPoint ClosestPointTo(const FPoint& point) const;
 };

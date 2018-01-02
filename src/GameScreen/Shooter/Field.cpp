@@ -11,7 +11,7 @@ Field::Field()
 void Field::Init(const FPoint& center, int size)
 {
     const float speed = 50;
-    const size_t enemyCount = 10;
+    const size_t enemyCount = 1;
 
     // TODO combine with gun calc
     auto& upper = _wallPoints[0] = FPoint(0, size / 2);
@@ -26,11 +26,14 @@ void Field::Init(const FPoint& center, int size)
     _gun.Init(bottom + FPoint(0, gunSize / 2), gunSize);
 
     Enemy::StaticInit();
+
+    // TODO make spawner with delta time between spawns
+    auto spawnPoint = left + FPoint(100, 0);
     for (size_t i = 0; i < enemyCount; i++) {
 
         FPoint speedVector(speed, 0);
         speedVector.Rotate(math::random(-math::PI / 4, math::PI / 4));
-        _enemies.push_back(Enemy(left, speedVector));
+        _enemies.push_back(Enemy(spawnPoint, speedVector));
     }
 }
 
@@ -53,4 +56,21 @@ void Field::Update(float dt)
 {
     for (auto& enemy : _enemies)
         enemy.Update(dt);
+
+    // resolve collision with walls
+
+    std::array<FLine, 4> walls{
+        FLine(_wallPoints[0], _wallPoints[1]),
+        FLine(_wallPoints[1], _wallPoints[2]),
+        FLine(_wallPoints[2], _wallPoints[3]),
+        FLine(_wallPoints[3], _wallPoints[0]),
+    };
+
+    for (auto& enemy : _enemies) {
+        for (auto& wall : walls) {
+            bool collision = TryResolveCollision(enemy, wall);
+            if (collision)
+                break;
+        }
+    }
 }
