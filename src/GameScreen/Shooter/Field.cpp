@@ -10,8 +10,8 @@ Field::Field()
 
 void Field::Init(const FPoint& center, int size)
 {
-    const float speed = 50;
-    const size_t enemyCount = 1;
+    const float speed = 200;
+    const size_t enemyCount = 10;
 
     // TODO combine with gun calc
     auto& upper = _wallPoints[0] = FPoint(0, size / 2);
@@ -58,8 +58,10 @@ void Field::Update(float dt)
         enemy.Update(dt);
 
     // resolve collision with walls
+    std::array<FLine, 6> walls{
+        _gun.GetLeftWall(),
+        _gun.GetRightWall(),
 
-    std::array<FLine, 4> walls{
         FLine(_wallPoints[0], _wallPoints[1]),
         FLine(_wallPoints[1], _wallPoints[2]),
         FLine(_wallPoints[2], _wallPoints[3]),

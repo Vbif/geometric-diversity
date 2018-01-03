@@ -31,14 +31,39 @@ public:
         return _position;
     }
 
+    const FPoint& Velocity() const
+    {
+        return _velocity;
+    }
+
+    void SetVelocity(const FPoint& newValue)
+    {
+        _velocity = newValue;
+    }
+
     FCircle GetBB() const
     {
         return FCircle(Position(), _bodyRadius);
     }
 
+    FLine GetPath() const
+    {
+        return FLine(_prevPosition, _position);
+    }
+
+    void StepBack()
+    {
+        _position = _prevPosition;
+    }
+
     void ReverseVelocity()
     {
         _velocity = -_velocity;
+    }
+
+    void Stop()
+    {
+        _velocity = FPoint();
     }
 };
 

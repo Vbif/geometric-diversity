@@ -35,3 +35,12 @@ void Gun::Draw()
 void Gun::Update()
 {
 }
+
+FLine Gun::GetLeftWall() const
+{
+    return FLine(_wallPoints[3], _wallPoints[0]);
+}
+FLine Gun::GetRightWall() const
+{
+    return FLine(_wallPoints[0], _wallPoints[1]);
+}

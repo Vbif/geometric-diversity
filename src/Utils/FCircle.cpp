@@ -4,11 +4,16 @@
 
 bool FCircle::Intersects(const FLine& line, FPoint* targetPoint) const
 {
-    auto closest = line.ClosestPointTo(center);
-    if (closest.GetDistanceTo(center) <= radius) {
-        if (targetPoint)
-            *targetPoint = closest;
-        return true;
-    }
-    return false;
+    FPoint closest;
+    bool onLine = line.ClosestPointTo(center, &closest);
+    if (!onLine)
+        return false;
+
+    float distanceToPoint = closest.GetDistanceTo(center);
+    if (distanceToPoint > radius)
+        return false;
+
+    if (targetPoint)
+        *targetPoint = closest;
+    return true;
 }

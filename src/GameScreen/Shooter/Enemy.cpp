@@ -28,6 +28,10 @@ void Enemy::Draw()
 {
     MatrixLock m;
     m.Translate(Position());
+
+    // TODO for debug
+    Render::DrawLine(FPoint(0, 0), Velocity().Normalized() * radius);
+
     // TODO Rotate enemy
 
     FPoint prev = _circlePoints.back();

@@ -14,7 +14,15 @@ public:
     {
     }
 
-    bool Intersects(const FLine& that, FPoint* targetPoint) const;
+    FPoint AsVector() const
+    {
+        return p1 - p0;
+    }
 
-    FPoint ClosestPointTo(const FPoint& point) const;
+    bool Intersects(const FLine& that, FPoint* targetPoint) const;
+    bool ClosestPointTo(const FPoint& point, FPoint* outPoint) const;
+    bool HavePoint(const FPoint& point) const;
+
+private:
+    bool FLine::HavePointSimple(const FPoint& point) const;
 };
