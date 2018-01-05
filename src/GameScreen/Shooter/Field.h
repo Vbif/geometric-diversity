@@ -20,4 +20,5 @@ private:
 
     std::unique_ptr<Gun> _gun;
     std::vector<Enemy> _enemies;
+    std::vector<Bullet> _bullets;
 };

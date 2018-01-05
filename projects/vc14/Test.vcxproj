@@ -126,6 +126,7 @@
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareGeneral.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareLife.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareSoldier.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Bullet.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Enemy.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Field.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Gun.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareGeneral.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareLife.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareSoldier.h" />
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Bullet.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Enemy.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Field.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Gun.h" />

@@ -2,31 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="projects\vc14">
-      <UniqueIdentifier>{c2e65d0d-24cc-4c35-a1a3-0cf2737347fe}</UniqueIdentifier>
+      <UniqueIdentifier>{468de052-5379-4ec5-9e8c-f0fd1da689ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="projects">
-      <UniqueIdentifier>{f4afb427-ea22-42f8-a6f8-887f047bc957}</UniqueIdentifier>
+      <UniqueIdentifier>{5e72019f-51ea-49aa-b910-d72a3ae15dac}</UniqueIdentifier>
     </Filter>
     <Filter Include="bin\base_p">
-      <UniqueIdentifier>{85fbbc2d-888d-4fa1-8c37-5a1c27780bab}</UniqueIdentifier>
+      <UniqueIdentifier>{b502416f-ebb9-4dae-a0d3-c02c7ed5b19c}</UniqueIdentifier>
     </Filter>
     <Filter Include="bin">
-      <UniqueIdentifier>{da8989d3-123c-4380-ba10-d78d0607327b}</UniqueIdentifier>
+      <UniqueIdentifier>{ebe5910a-38a4-41f8-9f92-6a1d70ad5d66}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{4118e05d-0ac6-441e-adee-ca0eaadf058f}</UniqueIdentifier>
+      <UniqueIdentifier>{34b6cd29-b363-40c6-b098-373811aab748}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen">
-      <UniqueIdentifier>{084315f2-b8e9-484f-8eaa-351e99e34f21}</UniqueIdentifier>
+      <UniqueIdentifier>{cea7f52f-6eb0-456b-ab5c-c9304f3016a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen\Misc">
-      <UniqueIdentifier>{1a945d0f-f481-414f-b963-606333a20b61}</UniqueIdentifier>
+      <UniqueIdentifier>{731a8dd7-9cb1-41e0-a2b3-a764674e7bd4}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen\Shooter">
-      <UniqueIdentifier>{5ae12575-611c-4961-9d43-f592c4a8ef97}</UniqueIdentifier>
+      <UniqueIdentifier>{7b8e2316-b873-471c-b559-404d484c349d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Utils">
-      <UniqueIdentifier>{e663abf1-8c40-4e2f-a05f-26e5dc603eaf}</UniqueIdentifier>
+      <UniqueIdentifier>{70cfbf28-9397-4997-aade-d44c83a61161}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,9 @@
     <ClCompile Include="..\..\src\GameScreen\GameWidget.cpp">
       <Filter>src\GameScreen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp">
+      <Filter>src\GameScreen\Misc</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareGeneral.cpp">
       <Filter>src\GameScreen\Misc</Filter>
     </ClCompile>
@@ -81,13 +84,13 @@
     <ClCompile Include="..\..\src\GameScreen\Shooter\Gun.cpp">
       <Filter>src\GameScreen\Shooter</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp">
-      <Filter>src\GameScreen\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Utils\FLine.cpp">
-      <Filter>src\Utils</Filter>
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Bullet.cpp">
+      <Filter>src\GameScreen\Shooter</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\FCircle.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\FLine.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\Transform.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Constants.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\TestAppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\GameWidget.h">
       <Filter>src\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h">
+      <Filter>src\GameScreen\Misc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareGeneral.h">
       <Filter>src\GameScreen\Misc</Filter>
@@ -125,17 +134,8 @@
     <ClInclude Include="..\..\src\GameScreen\Shooter\Gun.h">
       <Filter>src\GameScreen\Shooter</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\MatrixUtils.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\WireFrameRender.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h">
-      <Filter>src\GameScreen\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Constants.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Bullet.h">
+      <Filter>src\GameScreen\Shooter</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\FCircle.h">
       <Filter>src\Utils</Filter>
@@ -143,7 +143,13 @@
     <ClInclude Include="..\..\src\Utils\FLine.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\MatrixUtils.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Utils\Transform.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\WireFrameRender.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>

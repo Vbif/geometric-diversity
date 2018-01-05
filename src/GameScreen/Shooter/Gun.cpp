@@ -2,11 +2,15 @@
 
 #include "Gun.h"
 
+static const float bulletSpeed = 400;
+
 Gun::Gun(const FPoint& position, float gunSize)
 {
     _center = position;
     _gunSize = gunSize / math::sqrt(2);
     _angle = 0;
+    _coolDownTime = 1;
+    _timeAfterLastShot = 0; // TODO make cooldown timer
 
     _wallPoints[0] = FPoint(0, gunSize / 2); // upper
     _wallPoints[1] = FPoint(gunSize / 2, 0); // right
@@ -31,17 +35,29 @@ void Gun::Draw()
     Render::DrawLine(FPoint(), FPoint(0, _gunSize));
 }
 
-void Gun::Update(float dt)
+void Gun::Update(float dt, std::vector<Bullet>& toSpawn)
 {
     FPoint mousePoint = Core::mainInput.GetMousePos();
     mousePoint = mousePoint - _wallPoints[2];
-    if (mousePoint.x == 0 || mousePoint.y == 0)
-        return;
 
-    float angle = FPoint(0, 1).GetDirectedAngle(mousePoint);
+    // повернем пушку
+    if (mousePoint.x != 0 && mousePoint.y != 0) {
+        float angle = FPoint(0, 1).GetDirectedAngle(mousePoint);
+        float maxAngle = (math::PI / 4) * 0.9;
+        _angle = math::clamp(-maxAngle, maxAngle, angle);
+    }
 
-    float maxAngle = (math::PI / 4) * 0.9;
-    _angle = math::clamp(-maxAngle, maxAngle, angle);
+    _timeAfterLastShot += dt;
+    _timeAfterLastShot = math::min(_timeAfterLastShot, _coolDownTime);
+    // стрельнем, если вышел кулдаун
+    if (Core::mainInput.GetMouseLeftButton() && _timeAfterLastShot >= _coolDownTime) {
+        _timeAfterLastShot = 0;
+
+        auto position = FPoint(0, _gunSize).Rotated(_angle) + _wallPoints[2];
+        auto speed = FPoint(0, bulletSpeed).Rotated(_angle);
+
+        toSpawn.emplace_back(position, speed);
+    }
 }
 
 FLine Gun::GetLeftWall() const

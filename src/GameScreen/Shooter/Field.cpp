@@ -50,14 +50,20 @@ void Field::Draw()
 
     for (auto& enemy : _enemies)
         enemy.Draw();
+
+    for (auto& bullet : _bullets)
+        bullet.Draw();
 }
 
 void Field::Update(float dt)
 {
-    _gun->Update(dt);
+    _gun->Update(dt, _bullets);
 
     for (auto& enemy : _enemies)
         enemy.Update(dt);
+
+    for (auto& bullet : _bullets)
+        bullet.Update(dt);
 
     // resolve collision with walls
     std::array<FLine, 6> walls{
