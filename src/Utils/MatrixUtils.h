@@ -17,4 +17,9 @@ public:
     {
         Render::device.MatrixTranslate(point);
     }
+
+    void Rotate(float angle)
+    {
+        Render::device.MatrixRotate(math::Vector3(0, 0, 1), angle * 180 / math::PI);
+    }
 };

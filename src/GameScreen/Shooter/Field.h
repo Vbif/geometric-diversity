@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <memory>
 #include <vector>
 
 #include "Enemy.h"
@@ -17,6 +18,6 @@ public:
 private:
     std::array<FPoint, 4> _wallPoints;
 
-    Gun _gun;
+    std::unique_ptr<Gun> _gun;
     std::vector<Enemy> _enemies;
 };

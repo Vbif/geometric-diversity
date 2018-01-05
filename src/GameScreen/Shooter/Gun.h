@@ -4,13 +4,12 @@
 
 #include "Utils\FLine.h"
 
-// TODO написать комментарии
+// “уррель, стрел€юща€ по клику мышки.
 class Gun {
 public:
-    Gun();
-    void Init(const FPoint& position, float gunSize);
+    Gun(const FPoint& position, float gunSize);
     void Draw();
-    void Update();
+    void Update(float dt);
 
     FLine GetLeftWall() const;
     FLine GetRightWall() const;
@@ -18,6 +17,7 @@ public:
 private:
     FPoint _center;
     float _gunSize;
+    float _angle;
 
     std::array<FPoint, 4> _wallPoints;
 };

@@ -23,7 +23,7 @@ void Field::Init(const FPoint& center, int size)
         p += center;
 
     const float gunSize = 100;
-    _gun.Init(bottom + FPoint(0, gunSize / 2), gunSize);
+    _gun.reset(new Gun(bottom + FPoint(0, gunSize / 2), gunSize));
 
     Enemy::StaticInit();
 
@@ -46,7 +46,7 @@ void Field::Draw()
     Render::DrawLine(_wallPoints[2], _wallPoints[3]);
     Render::DrawLine(_wallPoints[3], _wallPoints[0]);
 
-    _gun.Draw();
+    _gun->Draw();
 
     for (auto& enemy : _enemies)
         enemy.Draw();
@@ -54,13 +54,15 @@ void Field::Draw()
 
 void Field::Update(float dt)
 {
+    _gun->Update(dt);
+
     for (auto& enemy : _enemies)
         enemy.Update(dt);
 
     // resolve collision with walls
     std::array<FLine, 6> walls{
-        _gun.GetLeftWall(),
-        _gun.GetRightWall(),
+        _gun->GetLeftWall(),
+        _gun->GetRightWall(),
 
         FLine(_wallPoints[0], _wallPoints[1]),
         FLine(_wallPoints[1], _wallPoints[2]),

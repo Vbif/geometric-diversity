@@ -13,4 +13,5 @@
 #include <PlayrixEngine.h>
 #endif
 
+#include "Utils\MatrixUtils.h"
 #include "Utils\WireFrameRender.h"
