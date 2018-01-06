@@ -67,4 +67,6 @@ public:
     }
 };
 
+bool CheckCollision(Transform& t0, Transform& t1);
+
 bool TryResolveCollision(Transform& transform, const FLine& staticLine);

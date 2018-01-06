@@ -4,6 +4,17 @@
 
 #include "Utils\random.hpp"
 
+template <class T>
+void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
+{
+    size_t distance = std::distance(vector.begin(), i);
+    if (i != vector.end() - 1)
+        std::swap(*i, *(vector.end() - 1));
+
+    vector.pop_back();
+    i = vector.begin() + distance;
+}
+
 Field::Field()
 {
 }
@@ -65,7 +76,6 @@ void Field::Update(float dt)
     for (auto& bullet : _bullets)
         bullet.Update(dt);
 
-    // resolve collision with walls
     std::array<FLine, 6> walls{
         _gun->GetLeftWall(),
         _gun->GetRightWall(),
@@ -76,11 +86,28 @@ void Field::Update(float dt)
         FLine(_wallPoints[3], _wallPoints[0]),
     };
 
-    for (auto& enemy : _enemies) {
+    for (auto itEnemy = _enemies.begin(); itEnemy != _enemies.end();) {
+        // отскочить от границ поля
         for (auto& wall : walls) {
-            bool collision = TryResolveCollision(enemy, wall);
+            bool collision = TryResolveCollision(*itEnemy, wall);
             if (collision)
                 break;
         }
+
+        bool wasEnemyRemoved = false;
+        // проверить столкновения с пулями
+        for (auto itBullet = _bullets.begin(); itBullet != _bullets.end(); ++itBullet) {
+            bool collision = CheckCollision(*itEnemy, *itBullet);
+            if (collision) {
+                wasEnemyRemoved = true;
+                remove_with_swap(_enemies, itEnemy);
+                remove_with_swap(_bullets, itBullet);
+                // TODO Make explosion
+                break;
+            }
+        }
+
+        if (!wasEnemyRemoved)
+            ++itEnemy;
     }
 }

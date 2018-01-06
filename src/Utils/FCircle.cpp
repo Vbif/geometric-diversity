@@ -17,3 +17,8 @@ bool FCircle::Intersects(const FLine& line, FPoint* targetPoint) const
         *targetPoint = closest;
     return true;
 }
+
+bool FCircle::Intersects(const FCircle& that) const
+{
+    return center.GetDistanceTo(that.center) < (radius + that.radius);
+}

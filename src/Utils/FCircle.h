@@ -15,4 +15,5 @@ public:
     }
 
     bool Intersects(const FLine& line, FPoint* targetPoint) const;
+    bool Intersects(const FCircle& that) const;
 };

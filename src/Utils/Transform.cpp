@@ -2,6 +2,22 @@
 
 #include "Transform.h"
 
+bool CheckCollision(Transform& t0, Transform& t1)
+{
+    auto bb0 = t0.GetBB();
+    auto bb1 = t1.GetBB();
+
+    auto path0 = t0.GetPath();
+    auto path1 = t1.GetPath();
+
+    if (bb0.Intersects(bb1))
+        return true;
+    if (path0.Intersects(path1, nullptr))
+        return true;
+
+    return false;
+}
+
 bool TryResolveCollision(Transform& transform, const FLine& staticLine)
 {
     auto bb = transform.GetBB();
