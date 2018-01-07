@@ -2,7 +2,12 @@
 <GUI>
 	<Layer name="GameLayer">
 		<Controls>
-      <GameWidget name="GameWidget"/>
+			<GameWidget name="GameWidget"/>
 		</Controls>
 	</Layer>
+  <Layer name="RestartGameLayer">
+    <Controls>
+      <RestartGameWidget name="RestartGameWidget"/>
+    </Controls>
+  </Layer>
 </GUI>

@@ -2,6 +2,7 @@
 
 #include "Constants.h"
 #include "GameScreen\GameWidget.h"
+#include "GameScreen\RestartGameWidget.h"
 #include "TestAppDelegate.h"
 
 TestAppDelegate::TestAppDelegate()
@@ -32,6 +33,7 @@ void TestAppDelegate::RegisterTypes()
     // его необходимо зарегистрировать таким образом.
     //
     REGISTER_WIDGET_XML(GameWidget, "GameWidget");
+    REGISTER_WIDGET_XML(RestartGameWidget, "RestartGameWidget");
 }
 
 void TestAppDelegate::LoadResources()

@@ -13,7 +13,6 @@ void GameWidget::Init()
 {
     int width = Constants::WindowWidth;
     int height = Constants::WindowHeight;
-    Core::appDelegate->GameContentSize(0, 0, width, height);
 
     int minSide = std::min(width, height);
     _field.Init(FPoint(width / 2, height / 2), minSide);
@@ -29,6 +28,12 @@ void GameWidget::Init()
 
 void GameWidget::Draw()
 {
+    float alpha = 1.0f;
+    if (Core::mainScreen.GetTopLayer()->name != "GameLayer")
+        alpha = 0.5f;
+
+    Render::PushAlphaMul m(alpha);
+
     _field.Draw();
     _soldier.Draw();
     _general.Draw();
@@ -41,11 +46,18 @@ void GameWidget::Draw()
 
 void GameWidget::Update(float dt)
 {
+    // pause
+    if (Core::mainScreen.GetTopLayer()->name != "GameLayer")
+        return;
+
     _field.Update(dt);
 
     size_t enemyTotal = _field.TotalEnemyCount();
     size_t enemyRemain = _field.RemainEnemyCount();
     _enemyLabel.SetValue(enemyTotal - enemyRemain, enemyTotal);
+
+    if (enemyRemain == 0)
+        Core::mainScreen.pushLayer("RestartGameLayer");
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)
