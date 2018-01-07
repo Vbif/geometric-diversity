@@ -21,7 +21,10 @@ void GameWidget::Init()
     // ¬се позиции рассчитаны на разрешение 1024х768
     FRect soldierBalloon(10, 230, 130, 260);
     _soldier.Init(FPoint(300, 55), soldierBalloon);
-    _general.Init(FPoint(724, 55), soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x, 0)));
+    _general.Init(FPoint(724, 55),
+        soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x, 0)));
+
+    _enemyLabel.SetPosition(FPoint(680, 640), FPoint(800, 640));
 }
 
 void GameWidget::Draw()
@@ -29,6 +32,7 @@ void GameWidget::Draw()
     _field.Draw();
     _soldier.Draw();
     _general.Draw();
+    _enemyLabel.Draw();
 
     IPoint mouse_pos = Core::mainInput.GetMousePos();
     Render::BindFont("arial");
@@ -38,6 +42,10 @@ void GameWidget::Draw()
 void GameWidget::Update(float dt)
 {
     _field.Update(dt);
+
+    size_t enemyTotal = _field.TotalEnemyCount();
+    size_t enemyRemain = _field.RemainEnemyCount();
+    _enemyLabel.SetValue(enemyTotal - enemyRemain, enemyTotal);
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)

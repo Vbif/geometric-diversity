@@ -15,6 +15,9 @@ public:
     void Draw();
     void Update(float dt);
 
+    size_t TotalEnemyCount() const;
+    size_t RemainEnemyCount() const;
+
 private:
     std::array<FPoint, 4> _wallPoints;
 

@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 
+#include "Misc\EnemyLabel.h"
 #include "Misc\SquareGeneral.h"
 #include "Misc\SquareSoldier.h"
 #include "Shooter\Field.h"
@@ -32,4 +33,5 @@ private:
     Field _field;
     SquareSoldier _soldier;
     SquareGeneral _general;
+    EnemyLabel _enemyLabel;
 };

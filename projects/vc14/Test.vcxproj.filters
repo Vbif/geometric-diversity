@@ -96,6 +96,9 @@
     <ClCompile Include="..\..\src\Utils\Transform.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameScreen\Misc\EnemyLabel.cpp">
+      <Filter>src\GameScreen\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\WireFrameRender.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameScreen\Misc\EnemyLabel.h">
+      <Filter>src\GameScreen\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

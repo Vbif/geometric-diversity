@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\GameScreen\GameWidget.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Misc\EnemyLabel.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareGeneral.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareLife.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\SquareSoldier.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="..\..\src\Constants.h" />
     <ClInclude Include="..\..\src\GameScreen\GameWidget.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h" />
+    <ClInclude Include="..\..\src\GameScreen\Misc\EnemyLabel.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareGeneral.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareLife.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\SquareSoldier.h" />
