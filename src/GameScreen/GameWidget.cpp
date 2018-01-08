@@ -32,6 +32,7 @@ void GameWidget::Init()
 
 void GameWidget::Restart()
 {
+    _gameTimer = Timer(_options.Time);
     _field.Restart(_options.EnemiesCount, _options.Speed);
 }
 
@@ -53,6 +54,12 @@ void GameWidget::Draw()
     Render::PrintString(924 + 100 / 2, 35, utils::lexical_cast(mouse_pos.x) + ", " + utils::lexical_cast(mouse_pos.y), 1.f, CenterAlign);
 }
 
+void Popup(const char* cause)
+{
+    Core::mainScreen.pushLayer("RestartGameLayer");
+    Core::guiManager.getLayer("RestartGameLayer")->getWidget("RestartGameWidget")->AcceptMessage(Message("PopupCause", cause));
+}
+
 void GameWidget::Update(float dt)
 {
     // pause
@@ -65,9 +72,12 @@ void GameWidget::Update(float dt)
     size_t enemyRemain = _field.RemainEnemyCount();
     _enemyLabel.SetValue(enemyTotal - enemyRemain, enemyTotal);
 
-    if (enemyRemain == 0) {
-        Core::mainScreen.pushLayer("RestartGameLayer");
-    }
+    if (enemyRemain == 0)
+        Popup("win");
+
+    _gameTimer.Update(dt);
+    if (_gameTimer.IsExpired())
+        Popup("fail");
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)

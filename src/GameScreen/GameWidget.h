@@ -7,6 +7,7 @@
 #include "Misc\SquareSoldier.h"
 #include "Options.h"
 #include "Shooter\Field.h"
+#include "Utils\Timer.h"
 
 ///
 /// Данный виджет представляет весь игровой экран
@@ -38,4 +39,5 @@ private:
     SquareSoldier _soldier;
     SquareGeneral _general;
     EnemyLabel _enemyLabel;
+    Timer _gameTimer;
 };

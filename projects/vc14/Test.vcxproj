@@ -164,6 +164,7 @@
     <ClInclude Include="..\..\src\Utils\FCircle.h" />
     <ClInclude Include="..\..\src\Utils\FLine.h" />
     <ClInclude Include="..\..\src\Utils\MatrixUtils.h" />
+    <ClInclude Include="..\..\src\Utils\Timer.h" />
     <ClInclude Include="..\..\src\Utils\Transform.h" />
     <ClInclude Include="..\..\src\Utils\WireFrameRender.h" />
   </ItemGroup>

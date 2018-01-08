@@ -26,4 +26,5 @@ private:
     IRect _windowRect;
     IRect _buttonRestart;
     IRect _buttonQuit;
+    bool isWin;
 };

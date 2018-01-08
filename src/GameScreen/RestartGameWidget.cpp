@@ -17,6 +17,8 @@ void RestartGameWidget::Init()
     _windowRect = IRect(100, 100, width - 200, height - 200);
     _buttonRestart = IRect(100, 100, 200, 40);
     _buttonQuit = IRect(_buttonRestart.RightTop().x, 100, 200, 40);
+
+    isWin = false;
 }
 
 void RestartGameWidget::Draw()
@@ -30,7 +32,7 @@ void RestartGameWidget::Draw()
     Render::device.SetTexturing(true);
     Render::BindFont("arial");
 
-    Render::PrintString(FRect(_windowRect).CenterPoint(), "You win", 5, CenterAlign, CenterAlign);
+    Render::PrintString(FRect(_windowRect).CenterPoint(), isWin ? "You win" : "You failed", 5, CenterAlign, CenterAlign);
     Render::PrintString(FRect(_buttonRestart).CenterPoint(), "Restart", 3, CenterAlign, CenterAlign);
     Render::PrintString(FRect(_buttonQuit).CenterPoint(), "Quit", 3, CenterAlign, CenterAlign);
 }
@@ -67,6 +69,10 @@ void RestartGameWidget::AcceptMessage(const Message& message)
 
     const std::string& publisher = message.getPublisher();
     const std::string& data = message.getData();
+
+    if (publisher == "PopupCause") {
+        isWin = data == "win";
+    }
 }
 
 void RestartGameWidget::KeyPressed(int keyCode)
