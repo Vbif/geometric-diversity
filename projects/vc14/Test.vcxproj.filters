@@ -102,6 +102,9 @@
     <ClCompile Include="..\..\src\GameScreen\RestartGameWidget.cpp">
       <Filter>src\GameScreen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Options.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\RestartGameWidget.h">
       <Filter>src\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Options.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

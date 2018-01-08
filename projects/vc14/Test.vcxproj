@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\src\GameScreen\Shooter\Field.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Gun.cpp" />
     <ClCompile Include="..\..\src\Main.cpp" />
+    <ClCompile Include="..\..\src\Options.cpp" />
     <ClCompile Include="..\..\src\TestAppDelegate.cpp" />
     <ClCompile Include="..\..\src\TestWidget.cpp" />
     <ClCompile Include="..\..\src\stdafx.cpp">
@@ -156,6 +157,7 @@
     <ClInclude Include="..\..\src\GameScreen\Shooter\Enemy.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Field.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Gun.h" />
+    <ClInclude Include="..\..\src\Options.h" />
     <ClInclude Include="..\..\src\TestAppDelegate.h" />
     <ClInclude Include="..\..\src\TestWidget.h" />
     <ClInclude Include="..\..\src\stdafx.h" />

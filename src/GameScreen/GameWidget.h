@@ -5,6 +5,7 @@
 #include "Misc\EnemyLabel.h"
 #include "Misc\SquareGeneral.h"
 #include "Misc\SquareSoldier.h"
+#include "Options.h"
 #include "Shooter\Field.h"
 
 ///
@@ -31,6 +32,8 @@ private:
     void Restart();
 
 private:
+    Options _options;
+
     Field _field;
     SquareSoldier _soldier;
     SquareGeneral _general;

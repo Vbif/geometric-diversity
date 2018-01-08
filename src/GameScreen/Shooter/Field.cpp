@@ -4,8 +4,6 @@
 
 #include "Utils\random.hpp"
 
-const static size_t enemyCount = 1;
-
 template <class T>
 void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
 {
@@ -39,9 +37,9 @@ void Field::Init(const FPoint& center, int size)
     _spawnPoint = left + FPoint(100, 0);
 }
 
-void Field::Restart()
+void Field::Restart(uint32_t enemyCount, float speed)
 {
-    const float speed = 200;
+    _enemyTotalCount = enemyCount;
 
     _enemies.clear();
     _bullets.clear();
@@ -121,7 +119,7 @@ void Field::Update(float dt)
 
 size_t Field::TotalEnemyCount() const
 {
-    return enemyCount;
+    return _enemyTotalCount;
 }
 size_t Field::RemainEnemyCount() const
 {

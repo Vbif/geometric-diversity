@@ -11,6 +11,8 @@ GameWidget::GameWidget(const std::string& name, rapidxml::xml_node<>* elem)
 
 void GameWidget::Init()
 {
+    _options.LoadFrom("input.txt");
+
     int width = Constants::WindowWidth;
     int height = Constants::WindowHeight;
 
@@ -30,7 +32,7 @@ void GameWidget::Init()
 
 void GameWidget::Restart()
 {
-    _field.Restart();
+    _field.Restart(_options.EnemiesCount, _options.Speed);
 }
 
 void GameWidget::Draw()

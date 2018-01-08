@@ -12,7 +12,7 @@ class Field {
 public:
     Field();
     void Init(const FPoint& center, int size);
-    void Restart();
+    void Restart(uint32_t enemyCount, float speed);
     void Draw();
     void Update(float dt);
 
@@ -26,5 +26,6 @@ private:
     std::vector<Enemy> _enemies;
     std::vector<Bullet> _bullets;
 
+    uint32_t _enemyTotalCount;
     FPoint _spawnPoint;
 };
