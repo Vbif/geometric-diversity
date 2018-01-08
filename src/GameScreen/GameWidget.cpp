@@ -24,6 +24,13 @@ void GameWidget::Init()
         soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x, 0)));
 
     _enemyLabel.SetPosition(FPoint(680, 640), FPoint(800, 640));
+
+    Restart();
+}
+
+void GameWidget::Restart()
+{
+    _field.Restart();
 }
 
 void GameWidget::Draw()
@@ -56,13 +63,13 @@ void GameWidget::Update(float dt)
     size_t enemyRemain = _field.RemainEnemyCount();
     _enemyLabel.SetValue(enemyTotal - enemyRemain, enemyTotal);
 
-    if (enemyRemain == 0)
+    if (enemyRemain == 0) {
         Core::mainScreen.pushLayer("RestartGameLayer");
+    }
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)
 {
-
     return false;
 }
 
@@ -82,6 +89,9 @@ void GameWidget::AcceptMessage(const Message& message)
 
     const std::string& publisher = message.getPublisher();
     const std::string& data = message.getData();
+
+    if (publisher == "RestartMessage")
+        Restart();
 }
 
 void GameWidget::KeyPressed(int keyCode)

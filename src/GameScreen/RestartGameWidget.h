@@ -23,4 +23,7 @@ private:
     void Init();
 
 private:
+    IRect _windowRect;
+    IRect _buttonRestart;
+    IRect _buttonQuit;
 };

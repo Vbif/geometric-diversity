@@ -28,6 +28,7 @@ public:
 
 private:
     void Init();
+    void Restart();
 
 private:
     Field _field;

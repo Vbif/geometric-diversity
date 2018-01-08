@@ -12,6 +12,7 @@ class Field {
 public:
     Field();
     void Init(const FPoint& center, int size);
+    void Restart();
     void Draw();
     void Update(float dt);
 
@@ -24,4 +25,6 @@ private:
     std::unique_ptr<Gun> _gun;
     std::vector<Enemy> _enemies;
     std::vector<Bullet> _bullets;
+
+    FPoint _spawnPoint;
 };

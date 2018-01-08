@@ -4,7 +4,7 @@
 
 #include "Utils\random.hpp"
 
-const static size_t enemyCount = 10;
+const static size_t enemyCount = 1;
 
 template <class T>
 void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
@@ -23,8 +23,6 @@ Field::Field()
 
 void Field::Init(const FPoint& center, int size)
 {
-    const float speed = 200;
-
     // TODO combine with gun calc
     auto& upper = _wallPoints[0] = FPoint(0, size / 2);
     auto& right = _wallPoints[1] = FPoint(size / 2, 0);
@@ -38,14 +36,22 @@ void Field::Init(const FPoint& center, int size)
     _gun.reset(new Gun(bottom + FPoint(0, gunSize / 2), gunSize));
 
     Enemy::StaticInit();
+    _spawnPoint = left + FPoint(100, 0);
+}
+
+void Field::Restart()
+{
+    const float speed = 200;
+
+    _enemies.clear();
+    _bullets.clear();
 
     // TODO make spawner with delta time between spawns
-    auto spawnPoint = left + FPoint(100, 0);
     for (size_t i = 0; i < enemyCount; i++) {
 
         FPoint speedVector(speed, 0);
         speedVector.Rotate(math::random(-math::PI / 4, math::PI / 4));
-        _enemies.push_back(Enemy(spawnPoint, speedVector));
+        _enemies.push_back(Enemy(_spawnPoint, speedVector));
     }
 }
 

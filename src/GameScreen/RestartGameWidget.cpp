@@ -11,16 +11,28 @@ RestartGameWidget::RestartGameWidget(const std::string& name, rapidxml::xml_node
 
 void RestartGameWidget::Init()
 {
+    int width = Constants::WindowWidth;
+    int height = Constants::WindowHeight;
+
+    _windowRect = IRect(100, 100, width - 200, height - 200);
+    _buttonRestart = IRect(100, 100, 200, 40);
+    _buttonQuit = IRect(_buttonRestart.RightTop().x, 100, 200, 40);
 }
 
 void RestartGameWidget::Draw()
 {
-    int width = Constants::WindowWidth;
-    int height = Constants::WindowHeight;
+    Render::device.SetTexturing(false);
+
+    Render::DrawFrame(_windowRect);
+    Render::DrawFrame(_buttonRestart);
+    Render::DrawFrame(_buttonQuit);
 
     Render::device.SetTexturing(true);
     Render::BindFont("arial");
-    Render::PrintString(FPoint(width / 2, height / 2), "You win", 5, CenterAlign, CenterAlign);
+
+    Render::PrintString(FRect(_windowRect).CenterPoint(), "You win", 5, CenterAlign, CenterAlign);
+    Render::PrintString(FRect(_buttonRestart).CenterPoint(), "Restart", 3, CenterAlign, CenterAlign);
+    Render::PrintString(FRect(_buttonQuit).CenterPoint(), "Quit", 3, CenterAlign, CenterAlign);
 }
 
 void RestartGameWidget::Update(float dt)
@@ -38,6 +50,13 @@ void RestartGameWidget::MouseMove(const IPoint& mouse_pos)
 
 void RestartGameWidget::MouseUp(const IPoint& mouse_pos)
 {
+    if (_buttonRestart.Contains(mouse_pos)) {
+        Core::mainScreen.popLayer();
+        Core::guiManager.getLayer("GameLayer")->getWidget("GameWidget")->AcceptMessage(Message("RestartMessage", ""));
+    }
+    if (_buttonQuit.Contains(mouse_pos)) {
+        Core::appInstance->CloseWindow();
+    }
 }
 
 void RestartGameWidget::AcceptMessage(const Message& message)
