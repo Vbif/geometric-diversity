@@ -19,7 +19,7 @@ Gun::Gun(const FPoint& position, float gunSize)
     for (auto& p : _wallPoints)
         p += _center;
 
-    _shotPosition = gunSize;
+    _shotPosition = gunSize * 1.1;
 }
 
 void Gun::Draw()

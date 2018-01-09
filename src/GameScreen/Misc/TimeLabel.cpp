@@ -4,12 +4,13 @@
 
 TimeLabel::TimeLabel()
 {
+    _textCaption = codepage_to_utf8("Время:", 1251);
     SetValue(1, 1);
 }
 
 void TimeLabel::SetPosition(const FPoint& center)
 {
-    _text = center;
+    _textPosition = center;
 }
 
 void TimeLabel::Draw()
@@ -19,7 +20,7 @@ void TimeLabel::Draw()
     Render::device.SetTexturing(true);
     {
         Render::BindFont("arial");
-        Render::PrintString(_text, "Time:", scale, RightAlign, CenterAlign);
+        Render::PrintString(_textPosition, _textCaption, scale, RightAlign, CenterAlign);
     }
 
     float totalSize = Render::getFontHeight() * scale;
@@ -31,7 +32,7 @@ void TimeLabel::Draw()
         Render::PushMatrix m;
 
         float s = currentSize / 2;
-        Render::device.MatrixTranslate(_text + FPoint(shift + s, 0));
+        Render::device.MatrixTranslate(_textPosition + FPoint(shift + s, 0));
         Render::DrawRect(IRect(-s, -s, currentSize, currentSize));
     }
 }

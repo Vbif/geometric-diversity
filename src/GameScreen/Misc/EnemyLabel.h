@@ -8,7 +8,8 @@ public:
     void SetValue(size_t killed, size_t total);
 
 private:
-    FPoint _text;
+    FPoint _textPosition;
     size_t _killedCount;
     size_t _totalCount;
+    std::string _textCaption;
 };

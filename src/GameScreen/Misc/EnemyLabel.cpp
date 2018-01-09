@@ -4,12 +4,13 @@
 
 EnemyLabel::EnemyLabel()
 {
+    _textCaption = codepage_to_utf8("Убито:", 1251);
     SetValue(1, 1);
 }
 
 void EnemyLabel::SetPosition(const FPoint& center)
 {
-    _text = center;
+    _textPosition = center;
 }
 
 void EnemyLabel::Draw()
@@ -19,7 +20,7 @@ void EnemyLabel::Draw()
     Render::device.SetTexturing(true);
     {
         Render::BindFont("arial");
-        Render::PrintString(_text, "Killed:", scale, RightAlign, CenterAlign);
+        Render::PrintString(_textPosition, _textCaption, scale, RightAlign, CenterAlign);
     }
 
     float totalSize = Render::getFontHeight() * scale;
@@ -30,7 +31,7 @@ void EnemyLabel::Draw()
     {
         Render::PushMatrix m;
 
-        Render::device.MatrixTranslate(_text + FPoint(shift, 0));
+        Render::device.MatrixTranslate(_textPosition + FPoint(shift, 0));
         Render::DrawRect(IRect((totalSize - currentSize) / 2, -currentSize / 2, currentSize, currentSize));
 
         Render::device.MatrixTranslate(FPoint(totalSize + shift, 0));
