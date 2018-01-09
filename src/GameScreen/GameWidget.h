@@ -5,6 +5,7 @@
 #include "Misc\EnemyLabel.h"
 #include "Misc\SquareGeneral.h"
 #include "Misc\SquareSoldier.h"
+#include "Misc\TimeLabel.h"
 #include "Options.h"
 #include "Shooter\Field.h"
 #include "Utils\Timer.h"
@@ -39,5 +40,6 @@ private:
     SquareSoldier _soldier;
     SquareGeneral _general;
     EnemyLabel _enemyLabel;
+    TimeLabel _timeLabel;
     Timer _gameTimer;
 };

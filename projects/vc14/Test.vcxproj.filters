@@ -105,6 +105,9 @@
     <ClCompile Include="..\..\src\Options.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameScreen\Misc\TimeLabel.cpp">
+      <Filter>src\GameScreen\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\Timer.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameScreen\Misc\TimeLabel.h">
+      <Filter>src\GameScreen\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

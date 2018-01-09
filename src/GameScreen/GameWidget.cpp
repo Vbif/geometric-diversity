@@ -25,7 +25,8 @@ void GameWidget::Init()
     _general.Init(FPoint(724, 55),
         soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x, 0)));
 
-    _enemyLabel.SetPosition(FPoint(680, 640), FPoint(800, 640));
+    _enemyLabel.SetPosition(FPoint(850, 640));
+    _timeLabel.SetPosition(FPoint(850, 700));
 
     Restart();
 }
@@ -48,6 +49,7 @@ void GameWidget::Draw()
     _soldier.Draw();
     _general.Draw();
     _enemyLabel.Draw();
+    _timeLabel.Draw();
 
     IPoint mouse_pos = Core::mainInput.GetMousePos();
     Render::BindFont("arial");
@@ -78,6 +80,10 @@ void GameWidget::Update(float dt)
     _gameTimer.Update(dt);
     if (_gameTimer.IsExpired())
         Popup("fail");
+
+    uint32_t timeTotal = _options.Time;
+    uint32_t timeRemain = _gameTimer.Remain();
+    _timeLabel.SetValue(timeRemain, timeTotal);
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)
