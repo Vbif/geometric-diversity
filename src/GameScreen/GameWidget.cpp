@@ -23,7 +23,7 @@ void GameWidget::Init()
     FRect soldierBalloon(10, 230, 130, 260);
     _soldier.Init(FPoint(300, 55), soldierBalloon);
     _general.Init(FPoint(724, 55),
-        soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x, 0)));
+        soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x - 10, 0)));
 
     _enemyLabel.SetPosition(FPoint(850, 640));
     _timeLabel.SetPosition(FPoint(850, 700));
@@ -84,6 +84,9 @@ void GameWidget::Update(float dt)
     uint32_t timeTotal = _options.Time;
     uint32_t timeRemain = _gameTimer.Remain();
     _timeLabel.SetValue(timeRemain, timeTotal);
+
+    _soldier.Update(dt);
+    _general.Update(dt);
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)

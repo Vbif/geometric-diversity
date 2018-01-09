@@ -43,4 +43,9 @@ public:
     {
         return _waitTime - _currentTime;
     }
+
+    float Total() const
+    {
+        return _waitTime;
+    }
 };

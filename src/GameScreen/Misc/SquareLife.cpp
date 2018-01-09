@@ -28,14 +28,21 @@ void SquareLife::Draw()
 {
     _balloon->Draw();
 
-    MatrixLock m;
-    m.Translate(_center);
+    Render::PushMatrix m;
+    Render::device.MatrixTranslate(_center);
+    Render::device.SetTexturing(false);
 
     Render::DrawRectWireframe(_frame);
     Render::DrawRectWireframe(_eyes[0]);
     Render::DrawRectWireframe(_eyes[1]);
 }
 
-void SquareLife::Update()
+void SquareLife::Update(float dt)
 {
+    _balloon->Update(dt);
+}
+
+Balloon& SquareLife::GetBalloon()
+{
+    return *_balloon;
 }

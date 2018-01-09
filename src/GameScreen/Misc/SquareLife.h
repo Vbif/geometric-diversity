@@ -9,7 +9,8 @@ class SquareLife {
 public:
     SquareLife();
     void Draw();
-    void Update();
+    void Update(float dt);
+    Balloon& GetBalloon();
 
 protected:
     void Init(const FPoint& position, float size, const FRect& balloonPosition);
