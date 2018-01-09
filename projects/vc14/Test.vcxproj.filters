@@ -108,6 +108,9 @@
     <ClCompile Include="..\..\src\GameScreen\Misc\TimeLabel.cpp">
       <Filter>src\GameScreen\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Spawner.cpp">
+      <Filter>src\GameScreen\Shooter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\Misc\TimeLabel.h">
       <Filter>src\GameScreen\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Spawner.h">
+      <Filter>src\GameScreen\Shooter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

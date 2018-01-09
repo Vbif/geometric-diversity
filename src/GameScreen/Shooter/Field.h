@@ -6,6 +6,7 @@
 
 #include "Enemy.h"
 #include "Gun.h"
+#include "Spawner.h"
 
 // TODO написать комментарии
 class Field {
@@ -27,5 +28,6 @@ private:
     std::vector<Bullet> _bullets;
 
     uint32_t _enemyTotalCount;
-    FPoint _spawnPoint;
+    uint32_t _enemyKilled;
+    Spawner _spawner;
 };

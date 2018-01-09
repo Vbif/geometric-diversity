@@ -34,23 +34,18 @@ void Field::Init(const FPoint& center, int size)
     _gun.reset(new Gun(bottom + FPoint(0, gunSize / 2), gunSize));
 
     Enemy::StaticInit();
-    _spawnPoint = left + FPoint(100, 0);
+    _spawner.SetPosition(left + FPoint(50, 0));
 }
 
 void Field::Restart(uint32_t enemyCount, float speed)
 {
     _enemyTotalCount = enemyCount;
+    _enemyKilled = 0;
 
     _enemies.clear();
     _bullets.clear();
 
-    // TODO make spawner with delta time between spawns
-    for (size_t i = 0; i < enemyCount; i++) {
-
-        FPoint speedVector(speed, 0);
-        speedVector.Rotate(math::random(-math::PI / 4, math::PI / 4));
-        _enemies.push_back(Enemy(_spawnPoint, speedVector));
-    }
+    _spawner.Restart(enemyCount, speed);
 }
 
 void Field::Draw()
@@ -69,10 +64,13 @@ void Field::Draw()
 
     for (auto& bullet : _bullets)
         bullet.Draw();
+
+    _spawner.Draw();
 }
 
 void Field::Update(float dt)
 {
+    _spawner.Update(dt, _enemies);
     _gun->Update(dt, _bullets);
 
     for (auto& enemy : _enemies)
@@ -107,6 +105,7 @@ void Field::Update(float dt)
                 wasEnemyRemoved = true;
                 remove_with_swap(_enemies, itEnemy);
                 remove_with_swap(_bullets, itBullet);
+                _enemyKilled++;
                 // TODO Make explosion
                 break;
             }
@@ -123,5 +122,5 @@ size_t Field::TotalEnemyCount() const
 }
 size_t Field::RemainEnemyCount() const
 {
-    return _enemies.size();
+    return _enemyTotalCount - _enemyKilled;
 }

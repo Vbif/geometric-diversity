@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\src\GameScreen\Shooter\Enemy.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Field.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Shooter\Gun.cpp" />
+    <ClCompile Include="..\..\src\GameScreen\Shooter\Spawner.cpp" />
     <ClCompile Include="..\..\src\Main.cpp" />
     <ClCompile Include="..\..\src\Options.cpp" />
     <ClCompile Include="..\..\src\TestAppDelegate.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="..\..\src\GameScreen\Shooter\Enemy.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Field.h" />
     <ClInclude Include="..\..\src\GameScreen\Shooter\Gun.h" />
+    <ClInclude Include="..\..\src\GameScreen\Shooter\Spawner.h" />
     <ClInclude Include="..\..\src\Options.h" />
     <ClInclude Include="..\..\src\TestAppDelegate.h" />
     <ClInclude Include="..\..\src\TestWidget.h" />
