@@ -21,7 +21,8 @@ void SquareLife::Init(const FPoint& position, float size, const FRect& balloonPo
     _eyes[0] = FRect(-eyeShiftX - eyeSize, -eyeShiftX, eyeShiftY, eyeShiftY + eyeSize);
     _eyes[1] = FRect(eyeShiftX, eyeShiftX + eyeSize, eyeShiftY, eyeShiftY + eyeSize);
 
-    _balloon.reset(new Balloon(balloonPosition, position + _frame.LeftTop()));
+    auto closestSide = balloonPosition.CenterPoint().x < position.x ? _frame.LeftTop() : _frame.RightTop();
+    _balloon.reset(new Balloon(balloonPosition, position + closestSide));
 }
 
 void SquareLife::Draw()

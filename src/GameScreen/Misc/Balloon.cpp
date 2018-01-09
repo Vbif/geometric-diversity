@@ -10,20 +10,17 @@ Balloon::Balloon(const FRect& mainPosition, const FPoint& firstPoint)
     : _mainBallon(mainPosition)
     , _state(State::Hidden)
 {
-    auto mainLeft = _mainBallon.LeftBottom();
-    auto mainRight = _mainBallon.RightBottom();
+    auto mainClosest = _mainBallon.CenterPoint();
+    mainClosest.y = _mainBallon.yStart;
 
-    auto mainClosest = firstPoint.GetDistanceTo(mainLeft) < firstPoint.GetDistanceTo(mainRight)
-        ? mainLeft
-        : mainRight;
-
-    float sizes[3] = { 10, 20, 30 };
+    float sizes[3] = { 10, 15, 20 };
     float xdelta = (mainClosest - firstPoint).x / _targetBallons.size();
 
     for (size_t i = 0; i < _targetBallons.size(); i++) {
 
+        float ydelta = -math::log2(0.1f + 0.33f * i);
         float x = firstPoint.x + xdelta * i;
-        float y = firstPoint.y - math::log2(0.1f + 0.33f * i);
+        float y = firstPoint.y + ydelta;
         _targetBallons[i] = FRect(x, x + sizes[i], y, y + sizes[i]);
     }
 }
