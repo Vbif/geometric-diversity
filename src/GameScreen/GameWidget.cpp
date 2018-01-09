@@ -35,6 +35,8 @@ void GameWidget::Restart()
 {
     _gameTimer = Timer(_options.Time);
     _field.Restart(_options.EnemiesCount, _options.Speed);
+
+    _replics.StartReplic(_soldier, _general);
 }
 
 void GameWidget::Draw()

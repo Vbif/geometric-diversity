@@ -111,6 +111,9 @@
     <ClCompile Include="..\..\src\GameScreen\Shooter\Spawner.cpp">
       <Filter>src\GameScreen\Shooter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameScreen\Misc\Replics.cpp">
+      <Filter>src\GameScreen\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\Shooter\Spawner.h">
       <Filter>src\GameScreen\Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameScreen\Misc\Replics.h">
+      <Filter>src\GameScreen\Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "stdafx.h"
 
 #include "Misc\EnemyLabel.h"
+#include "Misc\Replics.h"
 #include "Misc\SquareGeneral.h"
 #include "Misc\SquareSoldier.h"
 #include "Misc\TimeLabel.h"
@@ -42,4 +43,5 @@ private:
     EnemyLabel _enemyLabel;
     TimeLabel _timeLabel;
     Timer _gameTimer;
+    Replics _replics;
 };

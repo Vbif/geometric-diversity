@@ -2,9 +2,9 @@
 
 #include "Balloon.h"
 
-static const float timePopup = 1;
-static const float timeShow = 5;
-static const float timePopdown = 1;
+static const float timePopup = 0.3;
+static const float timeShow = 2;
+static const float timePopdown = 0.3;
 
 Balloon::Balloon(const FRect& mainPosition, const FPoint& firstPoint)
     : _mainBallon(mainPosition)
@@ -55,7 +55,7 @@ void Balloon::Draw()
 
         Render::device.SetTexturing(true);
         Render::BindFont("arial");
-        Render::PrintString(_mainBallon.CenterPoint(), _text, 2, CenterAlign, CenterAlign);
+        Render::PrintString(_mainBallon.CenterPoint(), _text, 1, CenterAlign, CenterAlign);
     }
 }
 
@@ -96,4 +96,9 @@ void Balloon::Show(const std::string& text)
     _text = text;
     _state = State::Popup;
     _timer = Timer(timePopup);
+}
+
+bool Balloon::IsInactive()
+{
+    return _state == State::Hidden;
 }

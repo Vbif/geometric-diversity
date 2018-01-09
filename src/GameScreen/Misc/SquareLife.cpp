@@ -40,9 +40,16 @@ void SquareLife::Draw()
 void SquareLife::Update(float dt)
 {
     _balloon->Update(dt);
+
+    if (_callback && _balloon->IsInactive()) {
+        auto copy = std::move(_callback);
+        _callback = nullptr;
+        copy();
+    }
 }
 
-Balloon& SquareLife::GetBalloon()
+void SquareLife::Say(const std::string& text, const SayCallback& callback)
 {
-    return *_balloon;
+    _callback = callback;
+    _balloon->Show(text);
 }

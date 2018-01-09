@@ -9,6 +9,7 @@ public:
     void Draw();
     void Update(float dt);
     void Show(const std::string& text);
+    bool IsInactive();
 
 private:
     enum class State {
