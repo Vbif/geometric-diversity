@@ -9,8 +9,7 @@ Gun::Gun(const FPoint& position, float gunSize)
     _center = position;
     _gunSize = gunSize / math::sqrt(2);
     _angle = 0;
-    _coolDownTime = 1;
-    _timeAfterLastShot = 0; // TODO make cooldown timer
+    _reloadTimer = Timer(1);
 
     _wallPoints[0] = FPoint(0, gunSize / 2); // upper
     _wallPoints[1] = FPoint(gunSize / 2, 0); // right
@@ -19,6 +18,8 @@ Gun::Gun(const FPoint& position, float gunSize)
 
     for (auto& p : _wallPoints)
         p += _center;
+
+    _shotPosition = gunSize;
 }
 
 void Gun::Draw()
@@ -47,13 +48,12 @@ void Gun::Update(float dt, std::vector<Bullet>& toSpawn)
         _angle = math::clamp(-maxAngle, maxAngle, angle);
     }
 
-    _timeAfterLastShot += dt;
-    _timeAfterLastShot = math::min(_timeAfterLastShot, _coolDownTime);
+    _reloadTimer.Update(dt);
     // стрельнем, если вышел кулдаун
-    if (Core::mainInput.GetMouseLeftButton() && _timeAfterLastShot >= _coolDownTime) {
-        _timeAfterLastShot = 0;
+    if (Core::mainInput.GetMouseLeftButton() && _reloadTimer.IsExpired()) {
+        _reloadTimer.Reset();
 
-        auto position = FPoint(0, _gunSize).Rotated(_angle) + _wallPoints[2];
+        auto position = FPoint(0, _shotPosition).Rotated(_angle) + _wallPoints[2];
         auto speed = FPoint(0, bulletSpeed).Rotated(_angle);
 
         toSpawn.emplace_back(position, speed);

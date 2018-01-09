@@ -186,4 +186,9 @@
       <Filter>src\GameScreen\Shooter</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\bin\base_p\input.txt">
+      <Filter>bin</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

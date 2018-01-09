@@ -114,6 +114,28 @@ void Field::Update(float dt)
         if (!wasEnemyRemoved)
             ++itEnemy;
     }
+
+    for (auto itBullet = _bullets.begin(); itBullet != _bullets.end();) {
+
+        bool wasBulletRemoved = false;
+
+        // отскочить от границ поля
+        for (auto& wall : walls) {
+            bool collision = TryResolveCollision(*itBullet, wall);
+            if (!collision)
+                continue;
+
+            bool needRemove = itBullet->OnCollision();
+            if (needRemove) {
+                remove_with_swap(_bullets, itBullet);
+                wasBulletRemoved = true;
+            }
+            break;
+        }
+
+        if (!wasBulletRemoved)
+            ++itBullet;
+    }
 }
 
 size_t Field::TotalEnemyCount() const

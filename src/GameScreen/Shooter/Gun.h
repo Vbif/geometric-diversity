@@ -3,6 +3,7 @@
 #include <array>
 
 #include "Utils\FLine.h"
+#include "Utils\Timer.h"
 
 #include "Bullet.h"
 
@@ -20,8 +21,8 @@ private:
     FPoint _center;
     float _gunSize;
     float _angle;
-    float _coolDownTime;
-    float _timeAfterLastShot;
+    Timer _reloadTimer;
+    float _shotPosition;
 
     std::array<FPoint, 4> _wallPoints;
 };
