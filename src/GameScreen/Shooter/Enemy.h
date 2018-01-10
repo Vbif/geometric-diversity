@@ -28,4 +28,5 @@ public:
 private:
     static const size_t CircleQuality = 8;
     static std::array<FPoint, CircleQuality> _circlePoints;
+    float _angle;
 };

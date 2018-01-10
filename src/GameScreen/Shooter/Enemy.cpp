@@ -28,18 +28,19 @@ Enemy::StartDraw::StartDraw()
 
 Enemy::Enemy(const FPoint& position, const FPoint& speed)
     : Transform(position, speed, radius)
+    , _angle(0)
 {
 }
 
 void Enemy::Draw()
 {
-    MatrixLock m;
-    m.Translate(Position());
+    Render::PushMatrix m;
+    Render::device.MatrixTranslate(Position());
 
-    // TODO for debug
-    Render::DrawLine(FPoint(0, 0), Velocity().Normalized() * radius);
+    // показывает направление полета. для отладки.
+    //Render::DrawLine(FPoint(0, 0), Velocity().Normalized() * radius);
 
-    // TODO Rotate enemy
+    Render::device.MatrixRotate(math::Vector3::UnitZ, _angle);
 
     FPoint prev = _circlePoints.back();
     for (size_t i = 0; i < _circlePoints.size(); i++) {
@@ -51,4 +52,8 @@ void Enemy::Draw()
 void Enemy::Update(float dt)
 {
     UpdateTransform(dt);
+
+    _angle += dt * 100;
+    while (_angle > 360)
+        _angle -= 360;
 }
