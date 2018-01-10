@@ -13,4 +13,7 @@
     <texture id="cancel_active" path="textures/cancel_active" />
     <texture id="cancel_pressed" path="textures/cancel_pressed" />
 	</Textures>
+	<Shaders>
+		<Shader id="myshader" vs="shaders/shader" ps="shaders/shader" />
+	</Shaders>
 </Resources>
