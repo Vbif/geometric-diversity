@@ -36,7 +36,7 @@ void Gun::Draw()
     Render::DrawLine(FPoint(), FPoint(0, _gunSize));
 }
 
-void Gun::Update(float dt, std::vector<Bullet>& toSpawn)
+void Gun::Update(float dt, EffectsContainer& effectContainer, std::vector<Bullet>& toSpawn)
 {
     FPoint mousePoint = Core::mainInput.GetMousePos();
     mousePoint = mousePoint - _wallPoints[2];
@@ -56,7 +56,7 @@ void Gun::Update(float dt, std::vector<Bullet>& toSpawn)
         auto position = FPoint(0, _shotPosition).Rotated(_angle) + _wallPoints[2];
         auto speed = FPoint(0, bulletSpeed).Rotated(_angle);
 
-        toSpawn.emplace_back(position, speed);
+        toSpawn.emplace_back(position, speed, effectContainer);
     }
 }
 

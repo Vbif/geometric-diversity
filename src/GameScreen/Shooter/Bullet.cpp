@@ -4,10 +4,16 @@
 
 static const float side = 10;
 
-Bullet::Bullet(const FPoint& position, const FPoint& speed)
+Bullet::Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer)
     : Transform(position, speed, side * math::sqrt(2))
     , _collisionCount(0)
 {
+    _effect = effectContainer.AddEffect("plum", Position());
+}
+
+Bullet::~Bullet()
+{
+    _effect->Kill();
 }
 
 void Bullet::Draw()
@@ -24,6 +30,7 @@ void Bullet::Draw()
 void Bullet::Update(float dt)
 {
     UpdateTransform(dt);
+    _effect->SetPos(Position());
 }
 
 bool Bullet::OnCollision()
@@ -31,5 +38,8 @@ bool Bullet::OnCollision()
     SetVelocity(Velocity() / 2);
     _collisionCount++;
 
-    return _collisionCount > 1;
+    if (_collisionCount > 1) {
+        return true;
+    };
+    return false;
 }

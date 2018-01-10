@@ -46,6 +46,7 @@ void Field::Restart(uint32_t enemyCount, float speed)
     _bullets.clear();
 
     _spawner.Restart(enemyCount, speed);
+    _effects.KillAllEffects();
 }
 
 void Field::Draw()
@@ -73,7 +74,7 @@ void Field::Draw()
 void Field::Update(float dt)
 {
     _spawner.Update(dt, _enemies);
-    _gun->Update(dt, _bullets);
+    _gun->Update(dt, _effects, _bullets);
 
     for (auto& enemy : _enemies)
         enemy.Update(dt);
