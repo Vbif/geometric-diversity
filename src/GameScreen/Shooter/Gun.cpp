@@ -24,14 +24,17 @@ Gun::Gun(const FPoint& position, float gunSize)
 
 void Gun::Draw()
 {
+    Render::PushTexturing t(false);
+    Render::PushColor color(NeonColors::Blue);
+
     Render::DrawLine(_wallPoints[0], _wallPoints[1]);
     Render::DrawLine(_wallPoints[1], _wallPoints[2]);
     Render::DrawLine(_wallPoints[2], _wallPoints[3]);
     Render::DrawLine(_wallPoints[3], _wallPoints[0]);
 
-    MatrixLock m;
-    m.Translate(_wallPoints[2]);
-    m.Rotate(_angle);
+    Render::PushMatrix m;
+    Render::device.MatrixTranslate(_wallPoints[2]);
+    Render::device.MatrixRotate(math::Vector3::UnitZ, _angle * 180 / math::PI);
 
     Render::DrawLine(FPoint(), FPoint(0, _gunSize));
 }

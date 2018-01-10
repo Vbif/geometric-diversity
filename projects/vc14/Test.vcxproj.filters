@@ -125,6 +125,9 @@
     <ClCompile Include="..\..\src\Utils\BlurEffect.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Utils\NeonColors.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -203,6 +206,9 @@
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\BlurEffect.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\NeonColors.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>

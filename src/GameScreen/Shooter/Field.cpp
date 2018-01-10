@@ -2,8 +2,6 @@
 
 #include "Field.h"
 
-#include "Utils\random.hpp"
-
 template <class T>
 void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
 {
@@ -51,20 +49,28 @@ void Field::Restart(uint32_t enemyCount, float speed)
 
 void Field::Draw()
 {
-    Render::device.SetTexturing(false);
+    {
+        Render::PushTexturing t(false);
+        Render::PushColor color(NeonColors::Blue);
 
-    Render::DrawLine(_wallPoints[0], _wallPoints[1]);
-    Render::DrawLine(_wallPoints[1], _wallPoints[2]);
-    Render::DrawLine(_wallPoints[2], _wallPoints[3]);
-    Render::DrawLine(_wallPoints[3], _wallPoints[0]);
+        Render::DrawLine(_wallPoints[0], _wallPoints[1]);
+        Render::DrawLine(_wallPoints[1], _wallPoints[2]);
+        Render::DrawLine(_wallPoints[2], _wallPoints[3]);
+        Render::DrawLine(_wallPoints[3], _wallPoints[0]);
+    }
 
     _gun->Draw();
 
-    for (auto& enemy : _enemies)
-        enemy.Draw();
-
-    for (auto& bullet : _bullets)
-        bullet.Draw();
+    {
+        Enemy::StartDraw start;
+        for (auto& enemy : _enemies)
+            enemy.Draw();
+    }
+    {
+        Bullet::StartDraw start;
+        for (auto& bullet : _bullets)
+            bullet.Draw();
+    }
 
     _spawner.Draw();
 

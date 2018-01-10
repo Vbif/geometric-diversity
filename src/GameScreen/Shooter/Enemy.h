@@ -8,7 +8,19 @@
 // "Круглый" враг
 class Enemy : public Transform {
 public:
+    class StartDraw {
+    public:
+        explicit StartDraw();
+
+    private:
+        Render::PushColor _color;
+        Render::PushTexturing _tex;
+        Render::PushBlendMode _blend;
+    };
+
+public:
     static void StaticInit();
+
     Enemy(const FPoint& position, const FPoint& speed);
     void Draw();
     void Update(float dt);

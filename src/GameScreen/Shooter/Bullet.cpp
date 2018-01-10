@@ -4,6 +4,12 @@
 
 static const float side = 10;
 
+Bullet::StartDraw::StartDraw()
+    : _color(NeonColors::Lilac)
+    , _tex(false)
+{
+}
+
 Bullet::Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer)
     : Transform(position, speed, side * math::sqrt(2))
     , _collisionCount(0)

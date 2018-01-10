@@ -14,4 +14,5 @@
 #endif
 
 #include "Utils\MatrixUtils.h"
+#include "Utils\NeonColors.h"
 #include "Utils\WireFrameRender.h"

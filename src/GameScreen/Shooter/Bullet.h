@@ -5,6 +5,16 @@
 /// Патрон, вылетающий из пушки. Отскакивает от стен один раз и замедляется.
 class Bullet : public Transform {
 public:
+    class StartDraw {
+    public:
+        explicit StartDraw();
+
+    private:
+        Render::PushColor _color;
+        Render::PushTexturing _tex;
+    };
+
+public:
     Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer);
     ~Bullet();
     void Draw();

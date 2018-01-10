@@ -19,6 +19,13 @@ void Enemy::StaticInit()
     }
 }
 
+Enemy::StartDraw::StartDraw()
+    : _color(NeonColors::Yellow)
+    , _blend(BlendMode::Add)
+    , _tex(false)
+{
+}
+
 Enemy::Enemy(const FPoint& position, const FPoint& speed)
     : Transform(position, speed, radius)
 {
