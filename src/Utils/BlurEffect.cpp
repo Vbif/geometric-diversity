@@ -7,13 +7,14 @@ static const float radius = 4;
 BlurEffect::BlurEffect()
 {
     RenderTargetConfig rti;
+    rti.multisampleType = MultisampleType::MULTISAMPLE_4_SAMPLES;
 
     auto size = Core::appInstance->GetMainWindow()->GetClientSizes();
     int width = math::GetNextPow2(size.width);
     int height = math::GetNextPow2(size.height);
 
     _original = Render::device.CreateRenderTarget(width, height, rti);
-    _halfBlurred = Render::device.CreateRenderTarget(width, height, rti);
+    _halfBlurred = Render::device.CreateRenderTarget(width, height);
     _shader = Core::resourceManager.Get<Render::ShaderProgram>("myshader");
 }
 

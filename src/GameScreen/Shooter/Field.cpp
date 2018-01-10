@@ -66,6 +66,8 @@ void Field::Draw()
         bullet.Draw();
 
     _spawner.Draw();
+
+    _effects.Draw();
 }
 
 void Field::Update(float dt)
@@ -78,6 +80,8 @@ void Field::Update(float dt)
 
     for (auto& bullet : _bullets)
         bullet.Update(dt);
+
+    _effects.Update(dt);
 
     std::array<FLine, 6> walls{
         _gun->GetLeftWall(),
@@ -102,11 +106,13 @@ void Field::Update(float dt)
         for (auto itBullet = _bullets.begin(); itBullet != _bullets.end(); ++itBullet) {
             bool collision = CheckCollision(*itEnemy, *itBullet);
             if (collision) {
-                wasEnemyRemoved = true;
+                _effects.AddEffect("explosion", itEnemy->Position());
+
                 remove_with_swap(_enemies, itEnemy);
                 remove_with_swap(_bullets, itBullet);
+                wasEnemyRemoved = true;
+
                 _enemyKilled++;
-                // TODO Make explosion
                 break;
             }
         }
@@ -142,6 +148,7 @@ size_t Field::TotalEnemyCount() const
 {
     return _enemyTotalCount;
 }
+
 size_t Field::RemainEnemyCount() const
 {
     return _enemyTotalCount - _enemyKilled;

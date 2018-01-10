@@ -30,4 +30,6 @@ private:
     uint32_t _enemyTotalCount;
     uint32_t _enemyKilled;
     Spawner _spawner;
+
+    EffectsContainer _effects;
 };
