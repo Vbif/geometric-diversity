@@ -15,11 +15,11 @@ void TimeLabel::SetPosition(const FPoint& center)
 
 void TimeLabel::Draw()
 {
-    float scale = 3;
+    float scale = 1;
 
     Render::device.SetTexturing(true);
     {
-        Render::BindFont("arial");
+        Render::BindFont("arial36");
         Render::PrintString(_textPosition, _textCaption, scale, RightAlign, CenterAlign);
     }
 

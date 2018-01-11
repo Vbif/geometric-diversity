@@ -35,11 +35,11 @@ void RestartGameWidget::Draw()
     Render::DrawWireframeRect(_buttonQuit, 4);
 
     Render::PushTexturing t1(true);
-    Render::BindFont("arial");
+    Render::BindFont("arial36");
 
-    Render::PrintString(_windowRect.CenterPoint(), isWin ? _textWin : _textLose, 5, CenterAlign, CenterAlign);
-    Render::PrintString(_buttonRestart.CenterPoint(), _textRestart, 3, CenterAlign, CenterAlign);
-    Render::PrintString(_buttonQuit.CenterPoint(), _textExit, 3, CenterAlign, CenterAlign);
+    Render::PrintString(_windowRect.CenterPoint(), isWin ? _textWin : _textLose, 2, CenterAlign, CenterAlign);
+    Render::PrintString(_buttonRestart.CenterPoint(), _textRestart, 1, CenterAlign, CenterAlign);
+    Render::PrintString(_buttonQuit.CenterPoint(), _textExit, 1, CenterAlign, CenterAlign);
 }
 
 void RestartGameWidget::Update(float dt)

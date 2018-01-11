@@ -7,6 +7,9 @@
     <font name="arial18" family="arial" size="18" color="255;255;255;255" letterSpacing="0">
       <Effect alpha="0.1" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0"/>
     </font>
+    <font name="arial36" family="arial" size="36" color="255;255;255;255" letterSpacing="0">
+      <Effect alpha="0.1" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0"/>
+    </font>
 	</FreeTypeFonts>
 	<Textures>
     <texture id="Star" path="textures/star.png" group="TestGroup" upload="false"/>
