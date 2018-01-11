@@ -14,7 +14,8 @@
 	<Textures>
 	</Textures>
 	<Shaders>
-		<Shader id="myshader" vs="shaders/shader" ps="shaders/shader" />
+		<Shader id="blur" vs="shaders/shader" ps="shaders/shader_blur" />
+    <Shader id="background" vs="shaders/shader" ps="shaders/shader_back" />
 	</Shaders>
   <Sounds>
     <sample id="background" path="sounds/background.ogg" mix="1" mode="stream+cache"/>

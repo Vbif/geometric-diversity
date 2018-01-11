@@ -9,7 +9,7 @@
 #include "Misc\TimeLabel.h"
 #include "Options.h"
 #include "Shooter\Field.h"
-#include "Utils\BlurEffect.h"
+#include "Utils\BackgroundEffect.h"
 #include "Utils\Timer.h"
 
 ///
@@ -46,4 +46,5 @@ private:
     Timer _gameTimer;
     Replics _replics;
     Timer _replicTimer;
+    BackgroundEffect _backEffect;
 };

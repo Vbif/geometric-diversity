@@ -51,6 +51,8 @@ void GameWidget::Draw()
 
     Render::PushAlphaMul m(alpha);
 
+    _backEffect.Draw();
+
     _field.Draw();
     _soldier.Draw();
     _general.Draw();
@@ -73,6 +75,8 @@ void GameWidget::Update(float dt)
     // pause
     if (Core::mainScreen.GetTopLayer()->name != "GameLayer")
         return;
+
+    _backEffect.Update(dt);
 
     _field.Update(dt);
 

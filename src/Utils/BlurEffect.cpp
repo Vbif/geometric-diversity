@@ -2,7 +2,7 @@
 
 #include "BlurEffect.h"
 
-static const float radius = 4;
+static const float radius = 3;
 
 BlurEffect::BlurEffect()
 {
@@ -15,7 +15,7 @@ BlurEffect::BlurEffect()
 
     _original = Render::device.CreateRenderTarget(width, height, rti);
     _halfBlurred = Render::device.CreateRenderTarget(width, height);
-    _shader = Core::resourceManager.Get<Render::ShaderProgram>("myshader");
+    _shader = Core::resourceManager.Get<Render::ShaderProgram>("blur");
 }
 
 BlurEffect::~BlurEffect()
