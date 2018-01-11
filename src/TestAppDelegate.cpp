@@ -52,8 +52,17 @@ void TestAppDelegate::OnResourceLoaded()
     }
 }
 
+void TestAppDelegate::OnPreDraw()
+{
+    if (!_effect)
+        _effect.reset(new BlurEffect());
+    _effect->Begin();
+}
+
 void TestAppDelegate::OnPostDraw()
 {
+    _effect->End();
+
     if (!Render::isFontLoaded("arial"))
         return;
 

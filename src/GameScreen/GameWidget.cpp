@@ -43,19 +43,15 @@ void GameWidget::Draw()
 {
     float alpha = 1.0f;
     if (Core::mainScreen.GetTopLayer()->name != "GameLayer")
-        alpha = 0.5f;
+        alpha = 0.3f;
 
     Render::PushAlphaMul m(alpha);
-
-    _effect.Begin();
 
     _field.Draw();
     _soldier.Draw();
     _general.Draw();
     _enemyLabel.Draw();
     _timeLabel.Draw();
-
-    _effect.End();
 
     IPoint mouse_pos = Core::mainInput.GetMousePos();
     Render::BindFont("arial");

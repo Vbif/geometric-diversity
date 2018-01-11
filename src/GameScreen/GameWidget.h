@@ -45,6 +45,4 @@ private:
     TimeLabel _timeLabel;
     Timer _gameTimer;
     Replics _replics;
-
-    BlurEffect _effect;
 };
