@@ -52,5 +52,7 @@ void Spawner::Update(float dt, std::vector<Enemy>& toSpawn)
         FPoint speedVector(_speed, 0);
         speedVector.Rotate(math::random(-math::PI / 4, math::PI / 4));
         toSpawn.push_back(Enemy(_spawnPoint, speedVector));
+
+        MM::manager.PlaySample("born", false, 0.2f);
     }
 }

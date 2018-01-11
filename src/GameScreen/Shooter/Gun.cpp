@@ -59,7 +59,7 @@ void Gun::Update(float dt, EffectsContainer& effectContainer, std::vector<Bullet
         auto position = FPoint(0, _shotPosition).Rotated(_angle) + _wallPoints[2];
         auto speed = FPoint(0, bulletSpeed).Rotated(_angle);
 
-        MM::manager.PlaySample("shot", false, 3, 0.5);
+        MM::manager.PlaySample("shot", false, 5, 0.5);
         toSpawn.emplace_back(position, speed, effectContainer);
     }
 }

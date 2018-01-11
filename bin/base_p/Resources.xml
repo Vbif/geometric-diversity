@@ -22,5 +22,6 @@
     <sample id="win" path="sounds/win.ogg" mix="1" mode="cache"/>
     <sample id="explosion" path="sounds/explosion.ogg" mix="10" mode="cache"/>
     <sample id="shot" path="sounds/shot.ogg" mix="10" mode="cache"/>
+    <sample id="born" path="sounds/born.ogg" mix="10" mode="cache"/>
   </Sounds>
 </Resources>
