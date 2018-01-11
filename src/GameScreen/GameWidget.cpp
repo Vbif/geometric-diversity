@@ -21,7 +21,7 @@ void GameWidget::Init()
 
     // ¬се позиции рассчитаны на разрешение 1024х768
     FRect soldierBalloon(10, 230, 130, 260);
-    _soldier.Init(FPoint(300, 55), soldierBalloon);
+    _soldier.Init(FPoint(300, 35), soldierBalloon);
     _general.Init(FPoint(724, 55),
         soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x - 10, 0)));
 
@@ -37,6 +37,7 @@ void GameWidget::Restart()
     _field.Restart(_options.EnemiesCount, _options.Speed);
 
     _replics.StartReplic(_soldier, _general);
+    _replicTimer = Timer(10);
 
     MM::manager.StopAll();
     MM::manager.PlayTrack("background", true, 0.5);
@@ -92,6 +93,12 @@ void GameWidget::Update(float dt)
 
     _soldier.Update(dt);
     _general.Update(dt);
+
+    _replicTimer.Update(dt);
+    if (_replicTimer.IsExpired()) {
+        _replicTimer.Reset();
+        _replics.RandomReplic();
+    }
 }
 
 bool GameWidget::MouseDown(const IPoint& mouse_pos)

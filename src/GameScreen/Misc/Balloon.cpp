@@ -52,7 +52,7 @@ void Balloon::Draw()
         Render::DrawWireframeRect(_mainBallon, 4);
 
         Render::device.SetTexturing(true);
-        Render::BindFont("arial");
+        Render::BindFont("arial18");
         Render::PrintString(_mainBallon.CenterPoint(), _text, 1, CenterAlign, CenterAlign);
     }
 }

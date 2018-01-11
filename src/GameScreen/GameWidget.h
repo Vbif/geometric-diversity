@@ -45,4 +45,5 @@ private:
     TimeLabel _timeLabel;
     Timer _gameTimer;
     Replics _replics;
+    Timer _replicTimer;
 };

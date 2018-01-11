@@ -4,5 +4,5 @@
 
 void SquareSoldier::Init(const FPoint& position, const FRect& balloon)
 {
-    SquareLife::Init(position, 100, balloon);
+    SquareLife::Init(position, 60, balloon);
 }
