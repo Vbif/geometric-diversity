@@ -65,9 +65,6 @@
     <ClCompile Include="..\..\src\TestAppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\TestWidget.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stdafx.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -140,9 +137,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\TestAppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\TestWidget.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stdafx.h">

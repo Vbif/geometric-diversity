@@ -138,7 +138,6 @@
     <ClCompile Include="..\..\src\Main.cpp" />
     <ClCompile Include="..\..\src\Options.cpp" />
     <ClCompile Include="..\..\src\TestAppDelegate.cpp" />
-    <ClCompile Include="..\..\src\TestWidget.cpp" />
     <ClCompile Include="..\..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -168,7 +167,6 @@
     <ClInclude Include="..\..\src\GameScreen\Shooter\Spawner.h" />
     <ClInclude Include="..\..\src\Options.h" />
     <ClInclude Include="..\..\src\TestAppDelegate.h" />
-    <ClInclude Include="..\..\src\TestWidget.h" />
     <ClInclude Include="..\..\src\stdafx.h" />
     <ClInclude Include="..\..\src\Utils\BlurEffect.h" />
     <ClInclude Include="..\..\src\Utils\FCircle.h" />

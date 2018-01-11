@@ -32,7 +32,6 @@ bool TryResolveCollision(Transform& transform, const FLine& staticLine)
     }
 
     // откатываемся в состояние до коллизии
-    // TODO сделать откат в точку столкновения
     transform.StepBack();
 
     // разворачиваем вектор скорости
