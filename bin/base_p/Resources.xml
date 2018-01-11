@@ -16,4 +16,9 @@
 	<Shaders>
 		<Shader id="myshader" vs="shaders/shader" ps="shaders/shader" />
 	</Shaders>
+  <Sounds>
+    <sample id="background" path="sounds/background.ogg" mix="1" mode="stream+cache"/>
+    <sample id="lose" path="sounds/lose.ogg" mix="1" mode="cache"/>
+    <sample id="win" path="sounds/win.ogg" mix="1" mode="cache"/>
+  </Sounds>
 </Resources>

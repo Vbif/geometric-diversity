@@ -77,6 +77,9 @@ void RestartGameWidget::AcceptMessage(const Message& message)
 
     if (publisher == "PopupCause") {
         isWin = data == "win";
+
+        MM::manager.FadeAll(0.5);
+        MM::manager.FadeInTrack(isWin ? "win" : "lose", 0.1);
     }
 }
 

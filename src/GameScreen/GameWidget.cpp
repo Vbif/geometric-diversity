@@ -37,6 +37,9 @@ void GameWidget::Restart()
     _field.Restart(_options.EnemiesCount, _options.Speed);
 
     _replics.StartReplic(_soldier, _general);
+
+    MM::manager.StopAll();
+    MM::manager.PlayTrack("background", true, 0.5);
 }
 
 void GameWidget::Draw()
