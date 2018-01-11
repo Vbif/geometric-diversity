@@ -53,10 +53,10 @@ void Field::Draw()
         Render::PushTexturing t(false);
         Render::PushColor color(NeonColors::Blue);
 
-        Render::DrawLine(_wallPoints[0], _wallPoints[1]);
-        Render::DrawLine(_wallPoints[1], _wallPoints[2]);
-        Render::DrawLine(_wallPoints[2], _wallPoints[3]);
-        Render::DrawLine(_wallPoints[3], _wallPoints[0]);
+        Render::DrawWireframeLine(_wallPoints[0], _wallPoints[1], 5);
+        Render::DrawWireframeLine(_wallPoints[1], _wallPoints[2], 5);
+        Render::DrawWireframeLine(_wallPoints[2], _wallPoints[3], 5);
+        Render::DrawWireframeLine(_wallPoints[3], _wallPoints[0], 5);
     }
 
     _gun->Draw();

@@ -27,16 +27,16 @@ void Gun::Draw()
     Render::PushTexturing t(false);
     Render::PushColor color(NeonColors::Blue);
 
-    Render::DrawLine(_wallPoints[0], _wallPoints[1]);
-    Render::DrawLine(_wallPoints[1], _wallPoints[2]);
-    Render::DrawLine(_wallPoints[2], _wallPoints[3]);
-    Render::DrawLine(_wallPoints[3], _wallPoints[0]);
+    Render::DrawWireframeLine(_wallPoints[0], _wallPoints[1], 3);
+    Render::DrawWireframeLine(_wallPoints[1], _wallPoints[2], 3);
+    Render::DrawWireframeLine(_wallPoints[2], _wallPoints[3], 3);
+    Render::DrawWireframeLine(_wallPoints[3], _wallPoints[0], 3);
 
     Render::PushMatrix m;
     Render::device.MatrixTranslate(_wallPoints[2]);
     Render::device.MatrixRotate(math::Vector3::UnitZ, _angle * 180 / math::PI);
 
-    Render::DrawLine(FPoint(), FPoint(0, _gunSize));
+    Render::DrawWireframeLine(FPoint(), FPoint(0, _gunSize), 15);
 }
 
 void Gun::Update(float dt, EffectsContainer& effectContainer, std::vector<Bullet>& toSpawn)

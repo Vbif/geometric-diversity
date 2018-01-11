@@ -3,7 +3,6 @@
 #include <cmath>
 
 #include "Enemy.h"
-#include "Utils\MatrixUtils.h"
 
 static const float radius = 20;
 std::array<FPoint, Enemy::CircleQuality> Enemy::_circlePoints;
@@ -44,7 +43,7 @@ void Enemy::Draw()
 
     FPoint prev = _circlePoints.back();
     for (size_t i = 0; i < _circlePoints.size(); i++) {
-        Render::DrawLine(prev, _circlePoints[i]);
+        Render::DrawWireframeLine(prev, _circlePoints[i], 3);
         prev = _circlePoints[i];
     }
 }

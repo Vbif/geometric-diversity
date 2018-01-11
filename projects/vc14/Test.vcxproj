@@ -148,6 +148,7 @@
     <ClCompile Include="..\..\src\Utils\FLine.cpp" />
     <ClCompile Include="..\..\src\Utils\NeonColors.cpp" />
     <ClCompile Include="..\..\src\Utils\Transform.cpp" />
+    <ClCompile Include="..\..\src\Utils\WireFrameRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h" />
@@ -172,7 +173,6 @@
     <ClInclude Include="..\..\src\Utils\BlurEffect.h" />
     <ClInclude Include="..\..\src\Utils\FCircle.h" />
     <ClInclude Include="..\..\src\Utils\FLine.h" />
-    <ClInclude Include="..\..\src\Utils\MatrixUtils.h" />
     <ClInclude Include="..\..\src\Utils\NeonColors.h" />
     <ClInclude Include="..\..\src\Utils\Timer.h" />
     <ClInclude Include="..\..\src\Utils\Transform.h" />

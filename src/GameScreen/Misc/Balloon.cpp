@@ -42,13 +42,14 @@ void Balloon::Draw()
         break;
     }
 
+    // TODO replace with PushTex
     Render::device.SetTexturing(false);
 
     for (size_t i = 0; i < targetBallonCount; i++)
-        Render::DrawRectWireframe(_targetBallons[i]);
+        Render::DrawWireframeRect(_targetBallons[i], 3);
 
     if (_state == State::Show) {
-        Render::DrawRectWireframe(_mainBallon);
+        Render::DrawWireframeRect(_mainBallon, 4);
 
         Render::device.SetTexturing(true);
         Render::BindFont("arial");

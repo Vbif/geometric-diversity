@@ -25,7 +25,7 @@ BlurEffect::~BlurEffect()
 void BlurEffect::Begin()
 {
     Render::device.BeginRenderTo(_original);
-    Render::device.Clear(Color::BLACK);
+    Render::device.Clear(Color::BLACK_TRANSPARENT);
 }
 
 void BlurEffect::End()
@@ -36,7 +36,7 @@ void BlurEffect::End()
 
     // горизонтальное размытие
     Render::device.BeginRenderTo(_halfBlurred);
-    Render::device.Clear(Color::BLACK);
+    Render::device.Clear(Color::BLACK_TRANSPARENT);
 
     _shader->Bind();
     _shader->SetUniform("dir", 1.f, 0.f);
@@ -54,11 +54,14 @@ void BlurEffect::End()
     _shader->SetUniform("resolution", (float)_original->Height());
     _shader->SetUniform("radius", radius);
 
+    Render::PushBlendMode m(BlendMode::Add);
+
+    // нарисуем два раза, что бы сделать ярче
+    _halfBlurred->Draw(FPoint());
     _halfBlurred->Draw(FPoint());
 
     _shader->Unbind();
 
     // еще раз нарисуем оригинал
-    Render::PushBlendMode m(BlendMode::Add);
     _original->Draw(FPoint());
 }

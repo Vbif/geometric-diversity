@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "SquareLife.h"
-#include "Utils\MatrixUtils.h"
 
 SquareLife::SquareLife()
 {
@@ -33,9 +32,9 @@ void SquareLife::Draw()
     Render::device.MatrixTranslate(_center);
     Render::device.SetTexturing(false);
 
-    Render::DrawRectWireframe(_frame);
-    Render::DrawRectWireframe(_eyes[0]);
-    Render::DrawRectWireframe(_eyes[1]);
+    Render::DrawWireframeRect(_frame, 4);
+    Render::DrawWireframeRect(_eyes[0], 2);
+    Render::DrawWireframeRect(_eyes[1], 2);
 }
 
 void SquareLife::Update(float dt)

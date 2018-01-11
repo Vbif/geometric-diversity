@@ -30,7 +30,7 @@ void Bullet::Draw()
     Render::device.MatrixRotate(math::Vector3::UnitZ, -angle * 180 / math::PI);
 
     const float halfSide = side / 2;
-    Render::DrawRectWireframe(FRect(-halfSide, halfSide, -halfSide, halfSide));
+    Render::DrawWireframeRect(FRect(-halfSide, halfSide, -halfSide, halfSide), 3);
 }
 
 void Bullet::Update(float dt)
