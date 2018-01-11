@@ -62,10 +62,10 @@ void GameWidget::Draw()
     Render::PrintString(924 + 100 / 2, 35, utils::lexical_cast(mouse_pos.x) + ", " + utils::lexical_cast(mouse_pos.y), 1.f, CenterAlign);
 }
 
-void Popup(const char* cause)
+void Popup(const char* cause, size_t killedCount)
 {
     Core::mainScreen.pushLayer("RestartGameLayer");
-    Core::guiManager.getLayer("RestartGameLayer")->getWidget("RestartGameWidget")->AcceptMessage(Message("PopupCause", cause));
+    Core::guiManager.getLayer("RestartGameLayer")->getWidget("RestartGameWidget")->AcceptMessage(Message("PopupCause", cause, killedCount));
 }
 
 void GameWidget::Update(float dt)
@@ -78,14 +78,15 @@ void GameWidget::Update(float dt)
 
     size_t enemyTotal = _field.TotalEnemyCount();
     size_t enemyRemain = _field.RemainEnemyCount();
-    _enemyLabel.SetValue(enemyTotal - enemyRemain, enemyTotal);
+    size_t enemyKilled = enemyTotal - enemyRemain;
+    _enemyLabel.SetValue(enemyKilled, enemyTotal);
 
     if (enemyRemain == 0)
-        Popup("win");
+        Popup("win", enemyKilled);
 
     _gameTimer.Update(dt);
     if (_gameTimer.IsExpired())
-        Popup("fail");
+        Popup("fail", enemyKilled);
 
     uint32_t timeTotal = _options.Time;
     uint32_t timeRemain = _gameTimer.Remain();

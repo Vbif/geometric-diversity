@@ -26,9 +26,11 @@ private:
     FRect _windowRect;
     FRect _buttonRestart;
     FRect _buttonQuit;
-    bool isWin;
+    bool _isWin;
+    size_t _killedCount;
     std::string _textWin;
     std::string _textLose;
     std::string _textRestart;
     std::string _textExit;
+    std::string _textKilled;
 };

@@ -32,7 +32,7 @@ void TimeLabel::Draw()
         Render::PushMatrix m;
 
         float s = currentSize / 2;
-        Render::device.MatrixTranslate(_textPosition + FPoint(shift + s, 0));
+        Render::device.MatrixTranslate(_textPosition + FPoint(shift + totalSize / 2, 0));
         Render::DrawRect(IRect(-s, -s, currentSize, currentSize));
     }
 }

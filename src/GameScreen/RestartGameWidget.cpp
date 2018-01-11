@@ -10,6 +10,7 @@ RestartGameWidget::RestartGameWidget(const std::string& name, rapidxml::xml_node
     _textLose = codepage_to_utf8("Вы проиграли!", 1251);
     _textRestart = codepage_to_utf8("Заново", 1251);
     _textExit = codepage_to_utf8("Выйти", 1251);
+    _textKilled = codepage_to_utf8("Убито врагов: ", 1251);
 
     Init();
 }
@@ -23,7 +24,8 @@ void RestartGameWidget::Init()
     _buttonRestart = FRect(IRect(100, 100, 200, 40));
     _buttonQuit = FRect(IRect(_buttonRestart.RightTop().x, 100, 200, 40));
 
-    isWin = false;
+    _isWin = false;
+    _killedCount = 0;
 }
 
 void RestartGameWidget::Draw()
@@ -37,7 +39,13 @@ void RestartGameWidget::Draw()
     Render::PushTexturing t1(true);
     Render::BindFont("arial36");
 
-    Render::PrintString(_windowRect.CenterPoint(), isWin ? _textWin : _textLose, 2, CenterAlign, CenterAlign);
+    FPoint mainCenter = _windowRect.CenterPoint();
+    Render::PrintString(mainCenter, _isWin ? _textWin : _textLose, 2, CenterAlign, CenterAlign);
+    if (!_isWin) {
+        std::string str = _textKilled + utils::lexical_cast(_killedCount);
+        Render::PrintString(mainCenter + FPoint(0, Render::getFontHeight() * 2), str, 1, CenterAlign, CenterAlign);
+    }
+
     Render::PrintString(_buttonRestart.CenterPoint(), _textRestart, 1, CenterAlign, CenterAlign);
     Render::PrintString(_buttonQuit.CenterPoint(), _textExit, 1, CenterAlign, CenterAlign);
 }
@@ -76,10 +84,11 @@ void RestartGameWidget::AcceptMessage(const Message& message)
     const std::string& data = message.getData();
 
     if (publisher == "PopupCause") {
-        isWin = data == "win";
+        _isWin = data == "win";
+        _killedCount = message.getIntegerParam();
 
         MM::manager.FadeAll(0.5);
-        MM::manager.FadeInTrack(isWin ? "win" : "lose", 0.1);
+        MM::manager.FadeInTrack(_isWin ? "win" : "lose", 0.1);
     }
 }
 
