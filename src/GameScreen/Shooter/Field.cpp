@@ -76,6 +76,8 @@ void Field::Draw()
     _effects.Draw();
 }
 
+static bool flipFlop = false;
+
 void Field::Update(float dt)
 {
     _spawner.Update(dt, _enemies);
@@ -89,9 +91,16 @@ void Field::Update(float dt)
 
     _effects.Update(dt);
 
+    // небольшой хак
+    // позволяет избавится от застреваний в вехнем углу пушки
+    // застревания появляются, потому что отскок происходит
+    // от первой линии в walls, а не от ближайшей
+    flipFlop ^= 1;
+
     std::array<FLine, 6> walls{
-        _gun->GetLeftWall(),
-        _gun->GetRightWall(),
+
+        flipFlop ? _gun->GetRightWall() : _gun->GetLeftWall(),
+        flipFlop ? _gun->GetLeftWall() : _gun->GetRightWall(),
 
         FLine(_wallPoints[0], _wallPoints[1]),
         FLine(_wallPoints[1], _wallPoints[2]),
