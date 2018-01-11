@@ -23,8 +23,12 @@ private:
     void Init();
 
 private:
-    IRect _windowRect;
-    IRect _buttonRestart;
-    IRect _buttonQuit;
+    FRect _windowRect;
+    FRect _buttonRestart;
+    FRect _buttonQuit;
     bool isWin;
+    std::string _textWin;
+    std::string _textLose;
+    std::string _textRestart;
+    std::string _textExit;
 };

@@ -6,6 +6,11 @@
 RestartGameWidget::RestartGameWidget(const std::string& name, rapidxml::xml_node<>* elem)
     : Widget(name)
 {
+    _textWin = codepage_to_utf8("Победа!", 1251);
+    _textLose = codepage_to_utf8("Вы проиграли!", 1251);
+    _textRestart = codepage_to_utf8("Заново", 1251);
+    _textExit = codepage_to_utf8("Выйти", 1251);
+
     Init();
 }
 
@@ -14,27 +19,27 @@ void RestartGameWidget::Init()
     int width = Constants::WindowWidth;
     int height = Constants::WindowHeight;
 
-    _windowRect = IRect(100, 100, width - 200, height - 200);
-    _buttonRestart = IRect(100, 100, 200, 40);
-    _buttonQuit = IRect(_buttonRestart.RightTop().x, 100, 200, 40);
+    _windowRect = FRect(IRect(100, 100, width - 200, height - 200));
+    _buttonRestart = FRect(IRect(100, 100, 200, 40));
+    _buttonQuit = FRect(IRect(_buttonRestart.RightTop().x, 100, 200, 40));
 
     isWin = false;
 }
 
 void RestartGameWidget::Draw()
 {
-    Render::device.SetTexturing(false);
+    Render::PushTexturing t0(false);
 
-    Render::DrawFrame(_windowRect);
-    Render::DrawFrame(_buttonRestart);
-    Render::DrawFrame(_buttonQuit);
+    Render::DrawWireframeRect(_windowRect, 4);
+    Render::DrawWireframeRect(_buttonRestart, 4);
+    Render::DrawWireframeRect(_buttonQuit, 4);
 
-    Render::device.SetTexturing(true);
+    Render::PushTexturing t1(true);
     Render::BindFont("arial");
 
-    Render::PrintString(FRect(_windowRect).CenterPoint(), isWin ? "You win" : "You failed", 5, CenterAlign, CenterAlign);
-    Render::PrintString(FRect(_buttonRestart).CenterPoint(), "Restart", 3, CenterAlign, CenterAlign);
-    Render::PrintString(FRect(_buttonQuit).CenterPoint(), "Quit", 3, CenterAlign, CenterAlign);
+    Render::PrintString(_windowRect.CenterPoint(), isWin ? _textWin : _textLose, 5, CenterAlign, CenterAlign);
+    Render::PrintString(_buttonRestart.CenterPoint(), _textRestart, 3, CenterAlign, CenterAlign);
+    Render::PrintString(_buttonQuit.CenterPoint(), _textExit, 3, CenterAlign, CenterAlign);
 }
 
 void RestartGameWidget::Update(float dt)
