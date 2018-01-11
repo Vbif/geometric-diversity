@@ -114,6 +114,7 @@ void Field::Update(float dt)
             bool collision = CheckCollision(*itEnemy, *itBullet);
             if (collision) {
                 _effects.AddEffect("explosion", itEnemy->Position());
+                MM::manager.PlaySample("explosion", false, 2);
 
                 remove_with_swap(_enemies, itEnemy);
                 remove_with_swap(_bullets, itBullet);

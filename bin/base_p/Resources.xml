@@ -20,5 +20,7 @@
     <sample id="background" path="sounds/background.ogg" mix="1" mode="stream+cache"/>
     <sample id="lose" path="sounds/lose.ogg" mix="1" mode="cache"/>
     <sample id="win" path="sounds/win.ogg" mix="1" mode="cache"/>
+    <sample id="explosion" path="sounds/explosion.ogg" mix="10" mode="cache"/>
+    <sample id="shot" path="sounds/shot.ogg" mix="10" mode="cache"/>
   </Sounds>
 </Resources>
