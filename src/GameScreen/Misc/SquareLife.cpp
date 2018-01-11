@@ -28,9 +28,9 @@ void SquareLife::Draw()
 {
     _balloon->Draw();
 
+    Render::PushTexturing t(false);
     Render::PushMatrix m;
     Render::device.MatrixTranslate(_center);
-    Render::device.SetTexturing(false);
 
     Render::DrawWireframeRect(_frame, 4);
     Render::DrawWireframeRect(_eyes[0], 2);

@@ -17,7 +17,7 @@ void EnemyLabel::Draw()
 {
     float scale = 1;
 
-    Render::device.SetTexturing(true);
+    Render::PushTexturing t0(true);
     {
         Render::BindFont("arial36");
         Render::PrintString(_textPosition, _textCaption, scale, RightAlign, CenterAlign);
@@ -27,7 +27,7 @@ void EnemyLabel::Draw()
     float currentSize = totalSize * _killedCount / _totalCount;
     float shift = 20;
 
-    Render::device.SetTexturing(false);
+    Render::PushTexturing t1(false);
     {
         Render::PushMatrix m;
 

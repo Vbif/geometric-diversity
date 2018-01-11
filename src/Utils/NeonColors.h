@@ -2,6 +2,7 @@
 
 #include "Utils\Color.h"
 
+/// Едкие цвета для игры
 struct NeonColors {
     static const Color Blue;
     static const Color Yellow;

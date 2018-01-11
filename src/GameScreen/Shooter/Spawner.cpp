@@ -25,10 +25,10 @@ void Spawner::Draw()
     if (_remain == 0)
         return;
 
+    Render::PushTexturing t(false);
     Render::PushMatrix m;
     Render::device.MatrixTranslate(_spawnPoint);
     Render::device.MatrixRotate(math::Vector3::UnitZ, _angle);
-    Render::device.SetTexturing(false);
 
     float size = 20;
     Render::DrawRect(-size / 2, -size / 2, size, size);

@@ -7,7 +7,7 @@
 
 #include "Bullet.h"
 
-// “уррель, стрел€юща€ по клику мышки.
+/// “уррель, стрел€юща€ по клику мышки.
 class Gun {
 public:
     Gun(const FPoint& position, float gunSize);

@@ -2,6 +2,7 @@
 
 #include "Utils\FPoint.h"
 
+/// Класс для работы с линиями
 class FLine {
 public:
     FPoint p0;

@@ -2,6 +2,7 @@
 
 #include "Utils/FLine.h"
 
+/// Класс для работы с окружностями
 class FCircle {
 public:
     FPoint center;

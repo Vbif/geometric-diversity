@@ -32,7 +32,7 @@ void BlurEffect::End()
 {
     Render::device.EndRenderTo();
 
-    Render::device.SetTexturing(true);
+    Render::PushTexturing t(true);
 
     // горизонтальное размытие
     Render::device.BeginRenderTo(_halfBlurred);

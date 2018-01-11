@@ -19,7 +19,6 @@ Field::Field()
 
 void Field::Init(const FPoint& center, int size)
 {
-    // TODO combine with gun calc
     auto& upper = _wallPoints[0] = FPoint(0, size / 2);
     auto& right = _wallPoints[1] = FPoint(size / 2, 0);
     auto& bottom = _wallPoints[2] = FPoint(0, -size / 2);

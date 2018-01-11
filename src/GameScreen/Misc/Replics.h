@@ -2,6 +2,7 @@
 
 #include "SquareLife.h"
 
+/// –еплики, произносимые квадратными аватарами
 class Replics {
 public:
     Replics();

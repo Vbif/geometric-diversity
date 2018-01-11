@@ -1,5 +1,6 @@
 #pragma once
 
+/// Строка, отображающая количество времени в виде уменьшающегося квадрата
 class TimeLabel {
 public:
     TimeLabel();

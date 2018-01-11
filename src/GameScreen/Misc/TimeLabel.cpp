@@ -17,7 +17,7 @@ void TimeLabel::Draw()
 {
     float scale = 1;
 
-    Render::device.SetTexturing(true);
+    Render::PushTexturing t0(true);
     {
         Render::BindFont("arial36");
         Render::PrintString(_textPosition, _textCaption, scale, RightAlign, CenterAlign);
@@ -27,7 +27,7 @@ void TimeLabel::Draw()
     float currentSize = totalSize * _time / _total;
     float shift = 20;
 
-    Render::device.SetTexturing(false);
+    Render::PushTexturing t1(false);
     {
         Render::PushMatrix m;
 

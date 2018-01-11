@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Utils\Timer.h"
 
+/// Объект, постепенно порождащий врагов
 class Spawner {
 public:
     Spawner();

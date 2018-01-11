@@ -1,5 +1,7 @@
 #pragma once
 
+/// Строка, отображающая количество уничтоженных врагов
+/// в виде двух квадратов.
 class EnemyLabel {
 public:
     EnemyLabel();

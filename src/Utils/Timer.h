@@ -1,5 +1,6 @@
 #pragma once
 
+/// Класс, отсчитывающий время
 class Timer {
 private:
     float _waitTime;

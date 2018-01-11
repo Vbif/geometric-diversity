@@ -1,5 +1,6 @@
 #pragma once
 
+/// Ёффект размыти€ и свечени€
 class BlurEffect {
 public:
     BlurEffect();

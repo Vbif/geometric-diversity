@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+/// Класс для загрузки настроек из файла
 class Options {
 public:
     Options();

@@ -5,7 +5,7 @@
 #include "Utils\FCircle.h"
 #include "Utils\Transform.h"
 
-// "Круглый" враг
+/// "Круглый" враг
 class Enemy : public Transform {
 public:
     class StartDraw {

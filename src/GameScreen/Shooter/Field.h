@@ -8,7 +8,7 @@
 #include "Gun.h"
 #include "Spawner.h"
 
-// TODO написать комментарии
+/// Игровое поле, содержащее все элементы игры
 class Field {
 public:
     Field();

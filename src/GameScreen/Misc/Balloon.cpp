@@ -42,8 +42,7 @@ void Balloon::Draw()
         break;
     }
 
-    // TODO replace with PushTex
-    Render::device.SetTexturing(false);
+    Render::PushTexturing t(false);
 
     for (size_t i = 0; i < targetBallonCount; i++)
         Render::DrawWireframeRect(_targetBallons[i], 3);
@@ -51,7 +50,7 @@ void Balloon::Draw()
     if (_state == State::Show) {
         Render::DrawWireframeRect(_mainBallon, 4);
 
-        Render::device.SetTexturing(true);
+        Render::PushTexturing t1(true);
         Render::BindFont("arial18");
         Render::PrintString(_mainBallon.CenterPoint(), _text, 1, CenterAlign, CenterAlign);
     }
