@@ -33,7 +33,7 @@ public:
 
 private:
     void Init();
-    void Restart();
+    void Restart(bool first);
 
 private:
     Options _options;

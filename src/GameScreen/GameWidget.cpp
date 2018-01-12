@@ -28,16 +28,20 @@ void GameWidget::Init()
     _enemyLabel.SetPosition(FPoint(850, 640));
     _timeLabel.SetPosition(FPoint(850, 700));
 
-    Restart();
+    Restart(true);
 }
 
-void GameWidget::Restart()
+void GameWidget::Restart(bool first)
 {
     _gameTimer = Timer(_options.Time);
     _field.Restart(_options.EnemiesCount, _options.Speed);
 
-    _replics.StartReplic(_soldier, _general);
-    _replicTimer = Timer(10);
+    if (first)
+        _replics.StartReplic(_soldier, _general);
+    else
+        _replics.RandomReplic();
+    // скажем еще случайных фраз, если время на прохождение уровня большое
+    _replicTimer = Timer(21);
 
     MM::manager.StopAll();
     MM::manager.PlayTrack("background", true, 0.5);
@@ -129,7 +133,7 @@ void GameWidget::AcceptMessage(const Message& message)
     const std::string& data = message.getData();
 
     if (publisher == "RestartMessage")
-        Restart();
+        Restart(false);
 }
 
 void GameWidget::KeyPressed(int keyCode)

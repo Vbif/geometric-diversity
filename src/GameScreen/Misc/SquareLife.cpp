@@ -53,3 +53,9 @@ void SquareLife::Say(const std::string& text, const SayCallback& callback)
     _callback = callback;
     _balloon->Show(text);
 }
+
+void SquareLife::Shut()
+{
+    _callback = nullptr;
+    _balloon->Hide();
+}

@@ -15,6 +15,7 @@ public:
     void Draw();
     void Update(float dt);
     void Say(const std::string& text, const SayCallback& callback = nullptr);
+    void Shut();
 
 protected:
     void Init(const FPoint& position, float size, const FRect& balloonPosition);

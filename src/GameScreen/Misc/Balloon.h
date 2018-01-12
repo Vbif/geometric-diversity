@@ -10,6 +10,7 @@ public:
     void Update(float dt);
     void Show(const std::string& text);
     bool IsInactive();
+    void Hide();
 
 private:
     enum class State {

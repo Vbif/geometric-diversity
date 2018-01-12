@@ -3,7 +3,7 @@
 #include "Balloon.h"
 
 static const float timePopup = 0.3;
-static const float timeShow = 2;
+static const float timeShow = 5;
 static const float timePopdown = 0.3;
 
 Balloon::Balloon(const FRect& mainPosition, const FPoint& firstPoint)
@@ -15,12 +15,12 @@ Balloon::Balloon(const FRect& mainPosition, const FPoint& firstPoint)
 
     float sizes[3] = { 10, 15, 20 };
     float xdelta = (mainClosest - firstPoint).x / _targetBallons.size();
+    float ydelta = ((mainClosest - firstPoint).y - sizes[2]) / _targetBallons.size();
 
     for (size_t i = 0; i < _targetBallons.size(); i++) {
 
-        float ydelta = -math::log2(0.1f + 0.33f * i);
         float x = firstPoint.x + xdelta * i;
-        float y = firstPoint.y + ydelta;
+        float y = firstPoint.y + ydelta * i;
         _targetBallons[i] = FRect(x, x + sizes[i], y, y + sizes[i]);
     }
 }
@@ -86,8 +86,7 @@ void Balloon::Update(float dt)
 void Balloon::Show(const std::string& text)
 {
     if (_state != State::Hidden) {
-        Log::Error("Illegal Show() on Balloon");
-        return;
+        Log::Warn("Illegal Show() on Balloon");
     }
 
     _text = text;
@@ -98,4 +97,9 @@ void Balloon::Show(const std::string& text)
 bool Balloon::IsInactive()
 {
     return _state == State::Hidden;
+}
+
+void Balloon::Hide()
+{
+    _state = State::Hidden;
 }

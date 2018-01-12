@@ -97,6 +97,9 @@ void Replics::StartReplic(SquareLife& soldier, SquareLife& general)
 
 void Replics::RandomReplic()
 {
+    _soldier->Shut();
+    _general->Shut();
+
     size_t index = math::random(size_t(1), _replics.size() - 1);
     SaySequence(_replics[index]);
 }
