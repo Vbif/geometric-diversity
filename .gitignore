@@ -285,6 +285,6 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-bin/Test.exe
-bin/Testd.exe
+bin/Test.*
+bin/Testd.*
 bin/write_directory/
