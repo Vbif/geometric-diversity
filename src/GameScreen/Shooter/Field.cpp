@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Field.h"
+#include "Utils\EffectHolder.h"
 
 template <class T>
 void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
@@ -13,11 +14,7 @@ void remove_with_swap(std::vector<T>& vector, typename std::vector<T>::iterator&
     i = vector.begin() + distance;
 }
 
-Field::Field()
-{
-}
-
-void Field::Init(const FPoint& center, int size)
+Field::Field(const FPoint& center, int size)
 {
     auto& upper = _wallPoints[0] = FPoint(0, size / 2);
     auto& right = _wallPoints[1] = FPoint(size / 2, 0);
@@ -43,7 +40,6 @@ void Field::Restart(uint32_t enemyCount, float speed)
     _bullets.clear();
 
     _spawner.Restart(enemyCount, speed);
-    _effects.KillAllEffects();
 }
 
 void Field::Draw()
@@ -72,8 +68,6 @@ void Field::Draw()
     }
 
     _spawner.Draw();
-
-    _effects.Draw();
 }
 
 static bool flipFlop = false;
@@ -81,15 +75,13 @@ static bool flipFlop = false;
 void Field::Update(float dt)
 {
     _spawner.Update(dt, _enemies);
-    _gun->Update(dt, _effects, _bullets);
+    _gun->Update(dt, _bullets);
 
     for (auto& enemy : _enemies)
         enemy.Update(dt);
 
     for (auto& bullet : _bullets)
         bullet.Update(dt);
-
-    _effects.Update(dt);
 
     // небольшой хак
     // позволяет избавится от застреваний в вехнем углу пушки
@@ -121,7 +113,7 @@ void Field::Update(float dt)
         for (auto itBullet = _bullets.begin(); itBullet != _bullets.end(); ++itBullet) {
             bool collision = CheckCollision(*itEnemy, *itBullet);
             if (collision) {
-                _effects.AddEffect("explosion", itEnemy->Position());
+                EffectHolder::GetDefault()->AddEffect("explosion", itEnemy->Position());
                 MM::manager.PlaySample("explosion", false, 2);
 
                 remove_with_swap(_enemies, itEnemy);

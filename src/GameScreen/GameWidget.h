@@ -36,6 +36,7 @@ private:
     void Restart(bool first);
 
 private:
+    // настройки уровня
     Options _options;
     // все объекты
     ScreenObjectComposite _objects;
@@ -45,8 +46,7 @@ private:
     SquareGeneral* _general;
     EnemyLabel* _enemyLabel;
     TimeLabel* _timeLabel;
-
-    Field _field;
+    Field* _field;
 
     Timer _gameTimer;
     Replics _replics;

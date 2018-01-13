@@ -2,6 +2,7 @@
 
 #include "Constants.h"
 #include "GameWidget.h"
+#include "Utils\EffectHolder.h"
 
 GameWidget::GameWidget(const std::string& name, rapidxml::xml_node<>* elem)
     : Widget(name)
@@ -44,8 +45,14 @@ void GameWidget::Init()
     _objects.AddChild(_soldier);
     _objects.AddChild(_general);
 
+    // игровое поле
     int minSide = std::min(width, height);
-    _field.Init(FPoint(width / 2, height / 2), minSide);
+    _field = new Field(FPoint(width / 2, height / 2), minSide);
+    _objects.AddChild(_field);
+
+    // партикловые эффекты
+    auto effects = new EffectHolder();
+    _objects.AddChild(effects);
 
     Restart(true);
 }
@@ -53,7 +60,7 @@ void GameWidget::Init()
 void GameWidget::Restart(bool first)
 {
     _gameTimer = Timer(_options.Time);
-    _field.Restart(_options.EnemiesCount, _options.Speed);
+    _field->Restart(_options.EnemiesCount, _options.Speed);
 
     if (first)
         _replics.StartReplic(_soldier, _general);
@@ -64,6 +71,8 @@ void GameWidget::Restart(bool first)
 
     MM::manager.StopAll();
     MM::manager.PlayTrack("background", true, 0.5);
+
+    EffectHolder::GetDefault()->KillAllEffects();
 }
 
 void GameWidget::Draw()
@@ -75,8 +84,6 @@ void GameWidget::Draw()
     Render::PushAlphaMul m(alpha);
 
     _objects.Draw();
-
-    _field.Draw();
 
     IPoint mouse_pos = Core::mainInput.GetMousePos();
     Render::BindFont("arial");
@@ -97,10 +104,8 @@ void GameWidget::Update(float dt)
 
     _objects.Update(dt);
 
-    _field.Update(dt);
-
-    size_t enemyTotal = _field.TotalEnemyCount();
-    size_t enemyRemain = _field.RemainEnemyCount();
+    size_t enemyTotal = _field->TotalEnemyCount();
+    size_t enemyRemain = _field->RemainEnemyCount();
     size_t enemyKilled = enemyTotal - enemyRemain;
     _enemyLabel->SetValue(enemyKilled, enemyTotal);
 

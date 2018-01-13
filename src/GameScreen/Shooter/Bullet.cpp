@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Bullet.h"
+#include "Utils\EffectHolder.h"
 
 static const float side = 10;
 
@@ -10,11 +11,11 @@ Bullet::StartDraw::StartDraw()
 {
 }
 
-Bullet::Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer)
+Bullet::Bullet(const FPoint& position, const FPoint& speed)
     : GameObject(position, speed, side * math::sqrt(2))
     , _collisionCount(0)
 {
-    _effect = effectContainer.AddEffect("plum", Position());
+    _effect = EffectHolder::GetDefault()->AddEffect("plum", Position());
 }
 
 Bullet::~Bullet()

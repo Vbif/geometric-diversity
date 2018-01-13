@@ -12,7 +12,7 @@ class Gun {
 public:
     Gun(const FPoint& position, float gunSize);
     void Draw();
-    void Update(float dt, EffectsContainer& effectContainer, std::vector<Bullet>& toSpawn);
+    void Update(float dt, std::vector<Bullet>& toSpawn);
 
     FLine GetLeftWall() const;
     FLine GetRightWall() const;

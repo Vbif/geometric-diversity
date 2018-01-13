@@ -137,6 +137,9 @@
     <ClCompile Include="..\..\src\Framework\GameWorld.cpp">
       <Filter>src\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Utils\EffectHolder.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h">
@@ -222,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\GameWorld.h">
       <Filter>src\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\EffectHolder.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

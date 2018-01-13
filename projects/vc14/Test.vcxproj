@@ -147,6 +147,7 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\BackgroundEffect.cpp" />
     <ClCompile Include="..\..\src\Utils\BlurEffect.cpp" />
+    <ClCompile Include="..\..\src\Utils\EffectHolder.cpp" />
     <ClCompile Include="..\..\src\Utils\FCircle.cpp" />
     <ClCompile Include="..\..\src\Utils\FLine.cpp" />
     <ClCompile Include="..\..\src\Utils\NeonColors.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="..\..\src\stdafx.h" />
     <ClInclude Include="..\..\src\Utils\BackgroundEffect.h" />
     <ClInclude Include="..\..\src\Utils\BlurEffect.h" />
+    <ClInclude Include="..\..\src\Utils\EffectHolder.h" />
     <ClInclude Include="..\..\src\Utils\FCircle.h" />
     <ClInclude Include="..\..\src\Utils\FLine.h" />
     <ClInclude Include="..\..\src\Utils\NeonColors.h" />

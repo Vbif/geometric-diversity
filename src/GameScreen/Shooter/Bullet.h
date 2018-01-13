@@ -15,7 +15,7 @@ public:
     };
 
 public:
-    Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer);
+    Bullet(const FPoint& position, const FPoint& speed);
     ~Bullet();
     void Draw();
     void Update(float dt);

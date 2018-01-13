@@ -9,10 +9,9 @@
 #include "Spawner.h"
 
 /// Игровое поле, содержащее все элементы игры
-class Field {
+class Field : public ScreenObject {
 public:
-    Field();
-    void Init(const FPoint& center, int size);
+    Field(const FPoint& center, int size);
     void Restart(uint32_t enemyCount, float speed);
     void Draw();
     void Update(float dt);
@@ -30,6 +29,4 @@ private:
     uint32_t _enemyTotalCount;
     uint32_t _enemyKilled;
     Spawner _spawner;
-
-    EffectsContainer _effects;
 };
