@@ -1,11 +1,13 @@
 #pragma once
 
-class BackgroundEffect {
+#include "Framework\ScreenObject.h"
+
+class BackgroundEffect : public ScreenObject {
 public:
     BackgroundEffect();
     ~BackgroundEffect();
-    void Draw();
-    void Update(float dt);
+    void Draw() override;
+    void Update(float dt) override;
 
 private:
     float _time;

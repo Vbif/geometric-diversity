@@ -1,10 +1,11 @@
 #pragma once
 
+#include "ScreenObject.h"
 #include "Utils\FCircle.h"
 
 /// Описание положения игрового объекта в игровом поле
 /// для простоты сделаем все объекты круглыми
-class Transform {
+class GameObject : public ScreenObject {
 private:
     FPoint _position;
     FPoint _prevPosition;
@@ -12,7 +13,7 @@ private:
     float _bodyRadius;
 
 public:
-    Transform(const FPoint& position, const FPoint& velocity, float radius)
+    GameObject(const FPoint& position, const FPoint& velocity, float radius)
         : _position(position)
         , _prevPosition(position)
         , _velocity(velocity)
@@ -20,7 +21,7 @@ public:
     {
     }
 
-    void UpdateTransform(float dt)
+    void Update(float dt) override
     {
         _prevPosition = _position;
         _position += _velocity.Scaled(dt, dt);
@@ -56,17 +57,8 @@ public:
         _position = _prevPosition;
     }
 
-    void ReverseVelocity()
-    {
-        _velocity = -_velocity;
-    }
-
     void Stop()
     {
         _velocity = FPoint();
     }
 };
-
-bool CheckCollision(Transform& t0, Transform& t1);
-
-bool TryResolveCollision(Transform& transform, const FLine& staticLine);

@@ -37,14 +37,18 @@ private:
 
 private:
     Options _options;
+    // все объекты
+    ScreenObjectComposite _objects;
+
+    // объекты, которыми управляем
+    SquareSoldier* _soldier;
+    SquareGeneral* _general;
+    EnemyLabel* _enemyLabel;
+    TimeLabel* _timeLabel;
 
     Field _field;
-    SquareSoldier _soldier;
-    SquareGeneral _general;
-    EnemyLabel _enemyLabel;
-    TimeLabel _timeLabel;
+
     Timer _gameTimer;
     Replics _replics;
     Timer _replicTimer;
-    BackgroundEffect _backEffect;
 };

@@ -1,11 +1,13 @@
 #pragma once
 
+#include "Framework\ScreenObject.h"
+
 /// Строка, отображающая количество времени в виде уменьшающегося квадрата
-class TimeLabel {
+class TimeLabel : public ScreenObject {
 public:
     TimeLabel();
     void SetPosition(const FPoint& center);
-    void Draw();
+    void Draw() override;
     void SetValue(uint32_t remain, uint32_t total);
 
 private:

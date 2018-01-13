@@ -11,7 +11,7 @@ Bullet::StartDraw::StartDraw()
 }
 
 Bullet::Bullet(const FPoint& position, const FPoint& speed, EffectsContainer& effectContainer)
-    : Transform(position, speed, side * math::sqrt(2))
+    : GameObject(position, speed, side * math::sqrt(2))
     , _collisionCount(0)
 {
     _effect = effectContainer.AddEffect("plum", Position());
@@ -35,7 +35,7 @@ void Bullet::Draw()
 
 void Bullet::Update(float dt)
 {
-    UpdateTransform(dt);
+    GameObject::Update(dt);
     _effect->SetPos(Position());
 }
 

@@ -2,45 +2,40 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="projects\vc14">
-      <UniqueIdentifier>{d0a0db2d-da1b-473e-a1d0-fdda4dc23dab}</UniqueIdentifier>
+      <UniqueIdentifier>{694066a5-7792-4337-b954-b2c8242ebeda}</UniqueIdentifier>
     </Filter>
     <Filter Include="projects">
-      <UniqueIdentifier>{f905cd5a-f504-4eee-be2c-0d52d5ee8f4e}</UniqueIdentifier>
+      <UniqueIdentifier>{734fc4b6-b818-4db7-a37f-2ce7611ce015}</UniqueIdentifier>
     </Filter>
     <Filter Include="bin\base_p">
-      <UniqueIdentifier>{8f24dbd0-99c4-4cb7-b983-bb3b095b1905}</UniqueIdentifier>
+      <UniqueIdentifier>{b3a84019-a594-4d36-a15d-7dfd80c63a55}</UniqueIdentifier>
     </Filter>
     <Filter Include="bin">
-      <UniqueIdentifier>{4baa7165-e8bc-4cb7-9eb8-72b95b339b57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="bin\base_p\shaders">
-      <UniqueIdentifier>{0d67d7b8-ce70-44f5-b601-fa1bc94a1a27}</UniqueIdentifier>
+      <UniqueIdentifier>{0e7ccdb8-f7ae-4890-8d3e-6e11f55876c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{d2ca3521-f85a-44f7-9873-ac069e21495e}</UniqueIdentifier>
+      <UniqueIdentifier>{1ce123bb-682d-40ec-8453-1596959e9d29}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen">
-      <UniqueIdentifier>{4bc95503-84a2-46d1-bf81-92b5556343c7}</UniqueIdentifier>
+      <UniqueIdentifier>{1ae6c920-0a69-408e-94ae-c17b1c7fe68b}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen\Misc">
-      <UniqueIdentifier>{4531ed1c-d08b-4f23-8a9a-4f2ee3a88a23}</UniqueIdentifier>
+      <UniqueIdentifier>{819bfca8-99fb-4e34-bcbc-c18e058679e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameScreen\Shooter">
-      <UniqueIdentifier>{d9ab9226-c8a0-4b34-85cb-d6cd75e99b7e}</UniqueIdentifier>
+      <UniqueIdentifier>{b762b917-cf7a-41e1-9cb3-f74a3405cfaa}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Utils">
-      <UniqueIdentifier>{ddb216d5-af2a-4f72-b8c8-bcf88456f769}</UniqueIdentifier>
+      <UniqueIdentifier>{84a434e3-c5bc-4b39-ba9a-2b7508e3ec5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Framework">
+      <UniqueIdentifier>{49f37ede-01c1-4f86-a54f-64d0feddd162}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
       <Filter>projects\vc14</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\bin\base_p\input.txt">
-      <Filter>bin\base_p</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\bin\base_p\Layers.xml">
@@ -54,6 +49,11 @@
     <None Include="..\..\bin\base_p\start.lua">
       <Filter>bin\base_p</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\bin\base_p\input.txt">
+      <Filter>bin\base_p</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main.cpp">
@@ -110,16 +110,16 @@
     <ClCompile Include="..\..\src\GameScreen\Shooter\Spawner.cpp">
       <Filter>src\GameScreen\Shooter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Utils\BackgroundEffect.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\BlurEffect.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Utils\FCircle.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\FLine.cpp">
-      <Filter>src\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Utils\Transform.cpp">
-      <Filter>src\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Utils\BlurEffect.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\NeonColors.cpp">
@@ -128,8 +128,14 @@
     <ClCompile Include="..\..\src\Utils\WireFrameRender.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Utils\BackgroundEffect.cpp">
-      <Filter>src\Utils</Filter>
+    <ClCompile Include="..\..\src\Framework\ScreenObject.cpp">
+      <Filter>src\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameObject.cpp">
+      <Filter>src\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameWorld.cpp">
+      <Filter>src\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\RestartGameWidget.h">
       <Filter>src\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\ScreenObject.h">
+      <Filter>src\Framework</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h">
       <Filter>src\GameScreen\Misc</Filter>
@@ -187,29 +196,32 @@
     <ClInclude Include="..\..\src\GameScreen\Shooter\Spawner.h">
       <Filter>src\GameScreen\Shooter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\BackgroundEffect.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\BlurEffect.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Utils\FCircle.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\FLine.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\Timer.h">
+    <ClInclude Include="..\..\src\Utils\NeonColors.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\Transform.h">
+    <ClInclude Include="..\..\src\Utils\Timer.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\WireFrameRender.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\BlurEffect.h">
-      <Filter>src\Utils</Filter>
+    <ClInclude Include="..\..\src\Framework\GameObject.h">
+      <Filter>src\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\NeonColors.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\BackgroundEffect.h">
-      <Filter>src\Utils</Filter>
+    <ClInclude Include="..\..\src\Framework\GameWorld.h">
+      <Filter>src\Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

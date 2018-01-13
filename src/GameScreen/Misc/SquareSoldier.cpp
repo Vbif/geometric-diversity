@@ -2,7 +2,7 @@
 
 #include "SquareSoldier.h"
 
-void SquareSoldier::Init(const FPoint& position, const FRect& balloon)
+SquareSoldier::SquareSoldier(const FPoint& position, const FRect& balloon)
+    : SquareLife(position, 60, balloon)
 {
-    SquareLife::Init(position, 60, balloon);
 }

@@ -13,20 +13,39 @@ void GameWidget::Init()
 {
     _options.LoadFrom("input.txt");
 
+    // Все позиции рассчитаны на разрешение 1024х768
     int width = Constants::WindowWidth;
     int height = Constants::WindowHeight;
 
+    // фон
+    auto background = new BackgroundEffect();
+    _objects.AddChild(background);
+
+    // игровой мир
+    auto gameWorld = new GameWorld();
+    gameWorld->SetAdDefault();
+    _objects.AddChild(gameWorld);
+
+    // отображения кол-ва врагов
+    _enemyLabel = new EnemyLabel();
+    _enemyLabel->SetPosition(FPoint(850, 640));
+    _objects.AddChild(_enemyLabel);
+
+    // отображения кол-ва времени уровня
+    _timeLabel = new TimeLabel();
+    _timeLabel->SetPosition(FPoint(850, 700));
+    _objects.AddChild(_timeLabel);
+
+    // квадратные аватары
+    FRect soldierBalloon(10, 230, 130, 260);
+    FRect generalBallon = soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x - 10, 0));
+    _soldier = new SquareSoldier(FPoint(300, 35), soldierBalloon);
+    _general = new SquareGeneral(FPoint(724, 55), generalBallon);
+    _objects.AddChild(_soldier);
+    _objects.AddChild(_general);
+
     int minSide = std::min(width, height);
     _field.Init(FPoint(width / 2, height / 2), minSide);
-
-    // Все позиции рассчитаны на разрешение 1024х768
-    FRect soldierBalloon(10, 230, 130, 260);
-    _soldier.Init(FPoint(300, 35), soldierBalloon);
-    _general.Init(FPoint(724, 55),
-        soldierBalloon.MovedBy(FPoint(width - soldierBalloon.RightTop().x - 10, 0)));
-
-    _enemyLabel.SetPosition(FPoint(850, 640));
-    _timeLabel.SetPosition(FPoint(850, 700));
 
     Restart(true);
 }
@@ -55,13 +74,9 @@ void GameWidget::Draw()
 
     Render::PushAlphaMul m(alpha);
 
-    _backEffect.Draw();
+    _objects.Draw();
 
     _field.Draw();
-    _soldier.Draw();
-    _general.Draw();
-    _enemyLabel.Draw();
-    _timeLabel.Draw();
 
     IPoint mouse_pos = Core::mainInput.GetMousePos();
     Render::BindFont("arial");
@@ -80,14 +95,14 @@ void GameWidget::Update(float dt)
     if (Core::mainScreen.GetTopLayer()->name != "GameLayer")
         return;
 
-    _backEffect.Update(dt);
+    _objects.Update(dt);
 
     _field.Update(dt);
 
     size_t enemyTotal = _field.TotalEnemyCount();
     size_t enemyRemain = _field.RemainEnemyCount();
     size_t enemyKilled = enemyTotal - enemyRemain;
-    _enemyLabel.SetValue(enemyKilled, enemyTotal);
+    _enemyLabel->SetValue(enemyKilled, enemyTotal);
 
     if (enemyRemain == 0)
         Popup("win", enemyKilled);
@@ -98,10 +113,7 @@ void GameWidget::Update(float dt)
 
     uint32_t timeTotal = _options.Time;
     uint32_t timeRemain = _gameTimer.Remain();
-    _timeLabel.SetValue(timeRemain, timeTotal);
-
-    _soldier.Update(dt);
-    _general.Update(dt);
+    _timeLabel->SetValue(timeRemain, timeTotal);
 
     _replicTimer.Update(dt);
     if (_replicTimer.IsExpired()) {

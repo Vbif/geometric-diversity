@@ -6,7 +6,7 @@
 class Replics {
 public:
     Replics();
-    void StartReplic(SquareLife& soldier, SquareLife& general);
+    void StartReplic(SquareLife* soldier, SquareLife* general);
     void RandomReplic();
 
 private:

@@ -121,6 +121,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Framework\GameObject.cpp" />
+    <ClCompile Include="..\..\src\Framework\GameWorld.cpp" />
+    <ClCompile Include="..\..\src\Framework\ScreenObject.cpp" />
     <ClCompile Include="..\..\src\GameScreen\GameWidget.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\Balloon.cpp" />
     <ClCompile Include="..\..\src\GameScreen\Misc\EnemyLabel.cpp" />
@@ -147,11 +150,13 @@
     <ClCompile Include="..\..\src\Utils\FCircle.cpp" />
     <ClCompile Include="..\..\src\Utils\FLine.cpp" />
     <ClCompile Include="..\..\src\Utils\NeonColors.cpp" />
-    <ClCompile Include="..\..\src\Utils\Transform.cpp" />
     <ClCompile Include="..\..\src\Utils\WireFrameRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Constants.h" />
+    <ClInclude Include="..\..\src\Framework\GameObject.h" />
+    <ClInclude Include="..\..\src\Framework\GameWorld.h" />
+    <ClInclude Include="..\..\src\Framework\ScreenObject.h" />
     <ClInclude Include="..\..\src\GameScreen\GameWidget.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\Balloon.h" />
     <ClInclude Include="..\..\src\GameScreen\Misc\EnemyLabel.h" />
@@ -175,7 +180,6 @@
     <ClInclude Include="..\..\src\Utils\FLine.h" />
     <ClInclude Include="..\..\src\Utils\NeonColors.h" />
     <ClInclude Include="..\..\src\Utils\Timer.h" />
-    <ClInclude Include="..\..\src\Utils\Transform.h" />
     <ClInclude Include="..\..\src\Utils\WireFrameRender.h" />
   </ItemGroup>
   <ItemGroup>

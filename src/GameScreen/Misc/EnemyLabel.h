@@ -1,12 +1,14 @@
 #pragma once
 
+#include "Framework\ScreenObject.h"
+
 /// Строка, отображающая количество уничтоженных врагов
 /// в виде двух квадратов.
-class EnemyLabel {
+class EnemyLabel : public ScreenObject {
 public:
     EnemyLabel();
     void SetPosition(const FPoint& center);
-    void Draw();
+    void Draw() override;
     void SetValue(size_t killed, size_t total);
 
 private:

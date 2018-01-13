@@ -26,7 +26,7 @@ Enemy::StartDraw::StartDraw()
 }
 
 Enemy::Enemy(const FPoint& position, const FPoint& speed)
-    : Transform(position, speed, radius)
+    : GameObject(position, speed, radius)
     , _angle(0)
 {
 }
@@ -50,7 +50,7 @@ void Enemy::Draw()
 
 void Enemy::Update(float dt)
 {
-    UpdateTransform(dt);
+    GameObject::Update(dt);
 
     _angle += dt * 100;
     while (_angle > 360)

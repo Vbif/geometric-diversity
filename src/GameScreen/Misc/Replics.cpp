@@ -88,10 +88,10 @@ Replics::Replics()
     _replics.push_back({ s5_t0, s5_t1, s5_t2 });
 }
 
-void Replics::StartReplic(SquareLife& soldier, SquareLife& general)
+void Replics::StartReplic(SquareLife* soldier, SquareLife* general)
 {
-    _soldier = &soldier;
-    _general = &general;
+    _soldier = soldier;
+    _general = general;
     SaySequence(_replics[0]);
 }
 

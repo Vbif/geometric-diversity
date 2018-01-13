@@ -2,11 +2,7 @@
 
 #include "SquareLife.h"
 
-SquareLife::SquareLife()
-{
-}
-
-void SquareLife::Init(const FPoint& position, float size, const FRect& balloonPosition)
+SquareLife::SquareLife(const FPoint& position, float size, const FRect& balloonPosition)
 {
     _center = position;
     _size = size;
@@ -21,12 +17,13 @@ void SquareLife::Init(const FPoint& position, float size, const FRect& balloonPo
     _eyes[1] = FRect(eyeShiftX, eyeShiftX + eyeSize, eyeShiftY, eyeShiftY + eyeSize);
 
     auto closestSide = balloonPosition.CenterPoint().x < position.x ? _frame.LeftTop() : _frame.RightTop();
-    _balloon.reset(new Balloon(balloonPosition, position + closestSide));
+    _balloon = new Balloon(balloonPosition, position + closestSide);
+    AddChild(_balloon);
 }
 
 void SquareLife::Draw()
 {
-    _balloon->Draw();
+    ScreenObjectComposite::Draw();
 
     Render::PushTexturing t(false);
     Render::PushMatrix m;
@@ -39,7 +36,7 @@ void SquareLife::Draw()
 
 void SquareLife::Update(float dt)
 {
-    _balloon->Update(dt);
+    ScreenObjectComposite::Update(dt);
 
     if (_callback && _balloon->IsInactive()) {
         auto copy = std::move(_callback);

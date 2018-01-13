@@ -2,11 +2,10 @@
 
 #include <array>
 
-#include "Utils\FCircle.h"
-#include "Utils\Transform.h"
+#include "FrameWork\GameWorld.h"
 
 /// "Круглый" враг
-class Enemy : public Transform {
+class Enemy : public GameObject {
 public:
     class StartDraw {
     public:

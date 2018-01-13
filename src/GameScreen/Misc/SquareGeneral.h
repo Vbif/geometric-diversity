@@ -5,7 +5,5 @@
 ///  вадратный генерал
 class SquareGeneral : public SquareLife {
 public:
-    void Init(const FPoint& position, const FRect& balloon);
-
-private:
+    SquareGeneral(const FPoint& position, const FRect& balloon);
 };

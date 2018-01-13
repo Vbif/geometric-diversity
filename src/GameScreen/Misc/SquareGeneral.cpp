@@ -2,7 +2,7 @@
 
 #include "SquareGeneral.h"
 
-void SquareGeneral::Init(const FPoint& position, const FRect& balloon)
+SquareGeneral::SquareGeneral(const FPoint& position, const FRect& balloon)
+    : SquareLife(position, 100, balloon)
 {
-    SquareLife::Init(position, 100, balloon);
 }

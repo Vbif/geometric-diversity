@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Utils\Transform.h"
+#include "FrameWork\GameWorld.h"
 
 /// Патрон, вылетающий из пушки. Отскакивает от стен один раз и замедляется.
-class Bullet : public Transform {
+class Bullet : public GameObject {
 public:
     class StartDraw {
     public:
