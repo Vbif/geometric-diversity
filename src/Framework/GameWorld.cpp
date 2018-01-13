@@ -4,6 +4,17 @@
 
 GameWorld* GameWorld::_defaultGameWorld = nullptr;
 
+template <class T>
+void RemoveWithSwap(std::vector<T>& vector, typename std::vector<T>::iterator& i)
+{
+    size_t distance = std::distance(vector.begin(), i);
+    if (i != vector.end() - 1)
+        std::swap(*i, *(vector.end() - 1));
+
+    vector.pop_back();
+    i = vector.begin() + distance;
+}
+
 GameWorld* GameWorld::GetDefault()
 {
     return _defaultGameWorld;
@@ -35,6 +46,21 @@ void GameWorld::Add(const FLine& object)
     _staticGeometry.emplace_back(object);
 }
 
+void GameWorld::RegisterRemoveCallback(const OnGameObjectRemove& callback)
+{
+    _removeCallbacks.push_back(callback);
+}
+
+void GameWorld::Clear(bool clearDynamic, bool clearStatic, bool clearCallbacks)
+{
+    if (clearDynamic)
+        _dynamicBodies.clear();
+    if (clearStatic)
+        _staticGeometry.clear();
+    if (clearCallbacks)
+        _removeCallbacks.clear();
+}
+
 void GameWorld::Draw()
 {
     for (auto& o : _dynamicBodies)
@@ -43,63 +69,97 @@ void GameWorld::Draw()
 
 void GameWorld::Update(float dt)
 {
+    // TODO
+    // fixed time staps with avoid spiral of death
+
     // подвинем все объекты
     for (auto& o : _dynamicBodies)
         o->Update(dt);
 
-    //for (auto itEnemy = _dynamicBodies.begin(); itEnemy != _dynamicBodies.end();) {
-    //	// отскочить от границ поля
-    //	for (auto& wall : _staticGeometry) {
-    //		bool collision = TryResolveCollision(*itEnemy, wall);
-    //		if (collision)
-    //			break;
-    //	}
+    for (size_t firstIt = 0; firstIt < _dynamicBodies.size(); firstIt++) {
 
-    //	bool wasEnemyRemoved = false;
-    //	// проверить столкновения с пулями
-    //	for (auto itBullet = _bullets.begin(); itBullet != _bullets.end(); ++itBullet) {
-    //		bool collision = CheckCollision(*itEnemy, *itBullet);
-    //		if (collision) {
-    //			_effects.AddEffect("explosion", itEnemy->Position());
-    //			MM::manager.PlaySample("explosion", false, 2);
+        // откидываем мертвые объекты
+        auto& first = GetDynamic(firstIt);
+        if (!first.IsAlive())
+            continue;
 
-    //			remove_with_swap(_enemies, itEnemy);
-    //			remove_with_swap(_bullets, itBullet);
-    //			wasEnemyRemoved = true;
+        for (size_t secondIt = firstIt + 1; secondIt < _dynamicBodies.size(); secondIt++) {
 
-    //			_enemyKilled++;
-    //			break;
-    //		}
-    //	}
+            // todo disable collision enemy x enemy
 
-    //	if (!wasEnemyRemoved)
-    //		++itEnemy;
-    //}
+            // откидываем мертвые объекты
+            auto& second = GetDynamic(secondIt);
+            if (!second.IsAlive())
+                continue;
 
-    //for (auto itBullet = _bullets.begin(); itBullet != _bullets.end();) {
+            bool collision = CheckCollision(first, second);
+            if (collision) {
+                // игровые объекты не отскакивают друг от друга, поэтому просто вызовем коллбеки
+                first.OnCollision(second);
+                second.OnCollision(first);
+            }
 
-    //	bool wasBulletRemoved = false;
+            // если первый объект умер, то больше с ним проверок не делаем
+            if (!first.IsAlive())
+                break;
+        }
+    }
 
-    //	// отскочить от границ поля
-    //	for (auto& wall : walls) {
-    //		bool collision = TryResolveCollision(*itBullet, wall);
-    //		if (!collision)
-    //			continue;
+    // удалим мертвые
+    for (auto it = _dynamicBodies.begin(); it != _dynamicBodies.end();) {
+        bool needIncrement = true;
+        auto& object = *it->get();
 
-    //		bool needRemove = itBullet->OnCollision();
-    //		if (needRemove) {
-    //			remove_with_swap(_bullets, itBullet);
-    //			wasBulletRemoved = true;
-    //		}
-    //		break;
-    //	}
+        if (!object.IsAlive()) {
+            needIncrement = false;
+            DeleteRoutine(it);
+        }
 
-    //	if (!wasBulletRemoved)
-    //		++itBullet;
-    //}
+        if (needIncrement)
+            ++it;
+    }
+
+    // отскочить от границ уровня
+    GameObject level(FPoint(), FPoint(), 0);
+    level.SetTag("level");
+    for (auto it = _dynamicBodies.begin(); it != _dynamicBodies.end();) {
+
+        bool needIncrement = true;
+        auto& object = *it->get();
+
+        for (auto& wall : _staticGeometry) {
+            // столкнем
+            bool collision = TryResolveCollision(object, wall);
+            if (!collision)
+                continue;
+
+            // вызовем реакцию
+            object.OnCollision(level);
+            // если объект умер, сразу удалим его
+            if (!object.IsAlive()) {
+                needIncrement = false;
+                DeleteRoutine(it);
+            }
+
+            break; // отбросим остальные
+        }
+
+        if (needIncrement)
+            ++it;
+    }
 }
 
-bool CheckCollision(GameObject& t0, GameObject& t1)
+GameObject& GameWorld::GetDynamic(size_t i)
+{
+    return *_dynamicBodies[i].get();
+}
+
+FLine& GameWorld::GetStatic(size_t i)
+{
+    return _staticGeometry[i];
+}
+
+bool GameWorld::CheckCollision(GameObject& t0, GameObject& t1)
 {
     auto bb0 = t0.GetBB();
     auto bb1 = t1.GetBB();
@@ -115,7 +175,7 @@ bool CheckCollision(GameObject& t0, GameObject& t1)
     return false;
 }
 
-bool TryResolveCollision(GameObject& transform, const FLine& staticLine)
+bool GameWorld::TryResolveCollision(GameObject& transform, const FLine& staticLine)
 {
     auto bb = transform.GetBB();
     auto path = transform.GetPath();
@@ -139,4 +199,12 @@ bool TryResolveCollision(GameObject& transform, const FLine& staticLine)
     transform.SetVelocity(newVelocity);
 
     return true;
+}
+
+void GameWorld::DeleteRoutine(std::vector<std::unique_ptr<GameObject>>::iterator& it)
+{
+    for (auto& c : _removeCallbacks)
+        c(*it->get());
+
+    RemoveWithSwap(_dynamicBodies, it);
 }

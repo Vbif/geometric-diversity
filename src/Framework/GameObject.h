@@ -11,6 +11,8 @@ private:
     FPoint _prevPosition;
     FPoint _velocity;
     float _bodyRadius;
+    bool _isAlive;
+    std::string _tag;
 
 public:
     GameObject(const FPoint& position, const FPoint& velocity, float radius)
@@ -19,12 +21,17 @@ public:
         , _velocity(velocity)
         , _bodyRadius(radius)
     {
+        _isAlive = true;
     }
 
     void Update(float dt) override
     {
         _prevPosition = _position;
         _position += _velocity.Scaled(dt, dt);
+    }
+
+    virtual void OnCollision(GameObject& other)
+    {
     }
 
     const FPoint& Position() const
@@ -60,5 +67,25 @@ public:
     void Stop()
     {
         _velocity = FPoint();
+    }
+
+    bool IsAlive() const
+    {
+        return _isAlive;
+    }
+
+    void Kill()
+    {
+        _isAlive = false;
+    }
+
+    const std::string& Tag() const
+    {
+        return _tag;
+    }
+
+    void SetTag(const std::string& tag)
+    {
+        _tag = tag;
     }
 };

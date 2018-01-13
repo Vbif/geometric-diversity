@@ -16,6 +16,7 @@ Bullet::Bullet(const FPoint& position, const FPoint& speed)
     , _collisionCount(0)
 {
     _effect = EffectHolder::GetDefault()->AddEffect("plum", Position());
+    SetTag("bullet");
 }
 
 Bullet::~Bullet()
@@ -25,6 +26,7 @@ Bullet::~Bullet()
 
 void Bullet::Draw()
 {
+    StartDraw draw;
     Render::PushMatrix m;
     Render::device.MatrixTranslate(Position());
     float angle = Velocity().GetDirectedAngle(FPoint(0, 1));
@@ -40,13 +42,17 @@ void Bullet::Update(float dt)
     _effect->SetPos(Position());
 }
 
-bool Bullet::OnCollision()
+void Bullet::OnCollision(GameObject& other)
 {
-    SetVelocity(Velocity() / 2);
-    _collisionCount++;
+    if (other.Tag() == "enemy") {
+        Kill();
+    } else if (other.Tag() == "level") {
 
-    if (_collisionCount > 1) {
-        return true;
-    };
-    return false;
+        SetVelocity(Velocity() / 2);
+        _collisionCount++;
+
+        if (_collisionCount > 1) {
+            Kill();
+        };
+    }
 }

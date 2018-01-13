@@ -8,11 +8,11 @@
 #include "Bullet.h"
 
 /// “уррель, стрел€юща€ по клику мышки.
-class Gun {
+class Gun : public ScreenObject {
 public:
     Gun(const FPoint& position, float gunSize);
-    void Draw();
-    void Update(float dt, std::vector<Bullet>& toSpawn);
+    void Draw() override;
+    void Update(float dt) override;
 
     FLine GetLeftWall() const;
     FLine GetRightWall() const;

@@ -17,9 +17,9 @@ public:
 public:
     Bullet(const FPoint& position, const FPoint& speed);
     ~Bullet();
-    void Draw();
-    void Update(float dt);
-    bool OnCollision();
+    void Draw() override;
+    void Update(float dt) override;
+    void OnCollision(GameObject& other) override;
 
 private:
     uint32_t _collisionCount;

@@ -4,13 +4,13 @@
 #include "Utils\Timer.h"
 
 /// Объект, постепенно порождащий врагов
-class Spawner {
+class Spawner : public ScreenObject {
 public:
     Spawner();
     void SetPosition(const FPoint& center);
     void Restart(uint32_t toSpawn, float speed);
-    void Draw();
-    void Update(float dt, std::vector<Enemy>& toSpawn);
+    void Draw() override;
+    void Update(float dt) override;
 
 private:
     FPoint _spawnPoint;

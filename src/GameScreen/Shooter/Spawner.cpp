@@ -34,7 +34,7 @@ void Spawner::Draw()
     Render::DrawRect(-size / 2, -size / 2, size, size);
 }
 
-void Spawner::Update(float dt, std::vector<Enemy>& toSpawn)
+void Spawner::Update(float dt)
 {
     if (_remain == 0)
         return;
@@ -51,7 +51,8 @@ void Spawner::Update(float dt, std::vector<Enemy>& toSpawn)
 
         FPoint speedVector(_speed, 0);
         speedVector.Rotate(math::random(-math::PI / 4, math::PI / 4));
-        toSpawn.push_back(Enemy(_spawnPoint, speedVector));
+        auto enemy = new Enemy(_spawnPoint, speedVector);
+        GameWorld::GetDefault()->Add(enemy);
 
         MM::manager.PlaySample("born", false, 0.2f);
     }

@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "Enemy.h"
+#include "Utils\EffectHolder.h"
 
 static const float radius = 20;
 std::array<FPoint, Enemy::CircleQuality> Enemy::_circlePoints;
@@ -29,10 +30,12 @@ Enemy::Enemy(const FPoint& position, const FPoint& speed)
     : GameObject(position, speed, radius)
     , _angle(0)
 {
+    SetTag("enemy");
 }
 
 void Enemy::Draw()
 {
+    StartDraw draw;
     Render::PushMatrix m;
     Render::device.MatrixTranslate(Position());
 
@@ -55,4 +58,13 @@ void Enemy::Update(float dt)
     _angle += dt * 100;
     while (_angle > 360)
         _angle -= 360;
+}
+
+void Enemy::OnCollision(GameObject& other)
+{
+    if (other.Tag() == "bullet") {
+        EffectHolder::GetDefault()->AddEffect("explosion", Position());
+        MM::manager.PlaySample("explosion", false, 2);
+        Kill();
+    }
 }

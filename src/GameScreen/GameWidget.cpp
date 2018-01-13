@@ -12,6 +12,7 @@ GameWidget::GameWidget(const std::string& name, rapidxml::xml_node<>* elem)
 
 void GameWidget::Init()
 {
+    Enemy::StaticInit();
     _options.LoadFrom("input.txt");
 
     // Все позиции рассчитаны на разрешение 1024х768
@@ -59,6 +60,10 @@ void GameWidget::Init()
 
 void GameWidget::Restart(bool first)
 {
+    GameWorld::GetDefault()->Clear(true, false, false);
+    EffectHolder::GetDefault()->KillAllEffects();
+    MM::manager.StopAll();
+
     _gameTimer = Timer(_options.Time);
     _field->Restart(_options.EnemiesCount, _options.Speed);
 
@@ -69,10 +74,7 @@ void GameWidget::Restart(bool first)
     // скажем еще случайных фраз, если время на прохождение уровня большое
     _replicTimer = Timer(21);
 
-    MM::manager.StopAll();
     MM::manager.PlayTrack("background", true, 0.5);
-
-    EffectHolder::GetDefault()->KillAllEffects();
 }
 
 void GameWidget::Draw()
