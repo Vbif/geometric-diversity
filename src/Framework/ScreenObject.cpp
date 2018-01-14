@@ -29,7 +29,5 @@ void ScreenObjectComposite::Update(float dt)
 
 void ScreenObjectComposite::AddChild(ScreenObject* child)
 {
-    // навсякий случай запретим вешать сюда игровые объекты
-    assert(dynamic_cast<GameObject*>(child) == nullptr);
     _children.push_back(std::unique_ptr<ScreenObject>(child));
 }
