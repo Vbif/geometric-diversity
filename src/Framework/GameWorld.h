@@ -28,7 +28,8 @@ private:
     GameObject& GetDynamic(size_t i);
     FLine& GetStatic(size_t i);
     bool CheckCollision(GameObject& t0, GameObject& t1);
-    bool TryResolveCollision(GameObject& transform, const FLine& staticLine);
+    float ResolveCollisionProbe(GameObject& transform, const FLine& staticLine);
+    bool ResolveCollision(GameObject& transform, const FLine& staticLine);
     void DeleteRoutine(std::vector<std::unique_ptr<GameObject>>::iterator& it);
 
 private:
@@ -39,4 +40,6 @@ private:
     std::vector<std::unique_ptr<GameObject>> _dynamicBodies;
     // Коллбеки для оповещения других объектов.
     std::vector<OnGameObjectRemove> _removeCallbacks;
+    // расстояния до статических объектов. Хранится в классе, что бы избежать аллокаций.
+    std::vector<std::pair<size_t, float>> _distances;
 };

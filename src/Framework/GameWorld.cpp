@@ -32,7 +32,6 @@ GameWorld::~GameWorld()
 
 void GameWorld::SetAdDefault()
 {
-    delete _defaultGameWorld;
     _defaultGameWorld = this;
 }
 
@@ -85,8 +84,6 @@ void GameWorld::Update(float dt)
 
         for (size_t secondIt = firstIt + 1; secondIt < _dynamicBodies.size(); secondIt++) {
 
-            // todo disable collision enemy x enemy
-
             // откидываем мертвые объекты
             auto& second = GetDynamic(secondIt);
             if (!second.IsAlive())
@@ -127,9 +124,26 @@ void GameWorld::Update(float dt)
         bool needIncrement = true;
         auto& object = *it->get();
 
-        for (auto& wall : _staticGeometry) {
+        // найдем точки столкновения со всеми границами
+        _distances.clear();
+        for (size_t wallIt = 0; wallIt < _staticGeometry.size(); wallIt++) {
+            auto distance = ResolveCollisionProbe(object, _staticGeometry[wallIt]);
+            if (distance != math::FloatInfinity())
+                _distances.emplace_back(wallIt, distance);
+        }
+
+        // если точка есть
+        if (_distances.size() > 0) {
+
+            // небольшой хак - выберем случайную преграду
+            // так фигуры не застряют в вогнутом угле "пушки"
+            size_t targetIndex = 0;
+            if (_distances.size() > 1)
+                targetIndex = math::random(size_t(0), _distances.size() - 1);
+
             // столкнем
-            bool collision = TryResolveCollision(object, wall);
+            auto& wall = _staticGeometry[_distances[targetIndex].first];
+            bool collision = ResolveCollision(object, wall);
             if (!collision)
                 continue;
 
@@ -140,8 +154,6 @@ void GameWorld::Update(float dt)
                 needIncrement = false;
                 DeleteRoutine(it);
             }
-
-            break; // отбросим остальные
         }
 
         if (needIncrement)
@@ -175,7 +187,7 @@ bool GameWorld::CheckCollision(GameObject& t0, GameObject& t1)
     return false;
 }
 
-bool GameWorld::TryResolveCollision(GameObject& transform, const FLine& staticLine)
+float GameWorld::ResolveCollisionProbe(GameObject& transform, const FLine& staticLine)
 {
     auto bb = transform.GetBB();
     auto path = transform.GetPath();
@@ -184,10 +196,19 @@ bool GameWorld::TryResolveCollision(GameObject& transform, const FLine& staticLi
     bool collisionIntersect = bb.Intersects(staticLine, &intersectPoint);
     bool collisionTunnel = path.Intersects(staticLine, &tunnelPoint);
 
-    if (!collisionIntersect && !collisionTunnel) {
-        return false;
+    if (collisionIntersect) {
+        return intersectPoint.GetDistanceTo(bb.center);
     }
 
+    if (collisionTunnel) {
+        return tunnelPoint.GetDistanceTo(path.p0);
+    }
+
+    return math::FloatInfinity();
+}
+
+bool GameWorld::ResolveCollision(GameObject& transform, const FLine& staticLine)
+{
     // откатываемся в состояние до коллизии
     transform.StepBack();
 
