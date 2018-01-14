@@ -21,6 +21,7 @@ GameWorld* GameWorld::GetDefault()
 }
 
 GameWorld::GameWorld()
+    : _timeRemain(0)
 {
 }
 
@@ -68,9 +69,19 @@ void GameWorld::Draw()
 
 void GameWorld::Update(float dt)
 {
-    // TODO
-    // fixed time staps with avoid spiral of death
+    // сделаем нашу обработку менее зависимой от frame rate
+    const float fixedTimeStep = 1.0 / 60;
 
+    _timeRemain += math::min(dt, 0.25f);
+
+    while (_timeRemain >= fixedTimeStep) {
+        UpdateInternal(fixedTimeStep);
+        _timeRemain -= fixedTimeStep;
+    }
+}
+
+void GameWorld::UpdateInternal(float dt)
+{
     // подвинем все объекты
     for (auto& o : _dynamicBodies)
         o->Update(dt);
@@ -143,9 +154,7 @@ void GameWorld::Update(float dt)
 
             // столкнем
             auto& wall = _staticGeometry[_distances[targetIndex].first];
-            bool collision = ResolveCollision(object, wall);
-            if (!collision)
-                continue;
+            ResolveCollision(object, wall);
 
             // вызовем реакцию
             object.OnCollision(level);
@@ -207,7 +216,7 @@ float GameWorld::ResolveCollisionProbe(GameObject& transform, const FLine& stati
     return math::FloatInfinity();
 }
 
-bool GameWorld::ResolveCollision(GameObject& transform, const FLine& staticLine)
+void GameWorld::ResolveCollision(GameObject& transform, const FLine& staticLine)
 {
     // откатываемся в состояние до коллизии
     transform.StepBack();
@@ -218,8 +227,6 @@ bool GameWorld::ResolveCollision(GameObject& transform, const FLine& staticLine)
     auto newVelocity = velocity.Rotated(2 * angle);
 
     transform.SetVelocity(newVelocity);
-
-    return true;
 }
 
 void GameWorld::DeleteRoutine(std::vector<std::unique_ptr<GameObject>>::iterator& it)
